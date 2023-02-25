@@ -46,14 +46,28 @@ class ProfileHeaderView: UIView {
         return myImage
     }()
     
+    private lazy var textField: UITextField = {
+        let textField = UITextField ()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 12.0
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.font = textField.font?.withSize(15)
+        textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
+        return textField
+    }()
+    
+    private var statusText: String = ""
+    
     override func didMoveToSuperview () {
         self.addSubview(button)
         self.addSubview(label2)
         self.addSubview(myImage)
         self.addSubview(label1)
+        self.addSubview(textField)
         setupObjects()
     }
-    
     
     private func setupObjects () {
         label1.topAnchor.constraint(equalTo: self.topAnchor, constant: 27).isActive = true
@@ -68,13 +82,22 @@ class ProfileHeaderView: UIView {
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         label2.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -34).isActive = true
         label2.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 30).isActive = true
-        
+        textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
+        textField.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -1).isActive = true
+        textField.heightAnchor.constraint(equalToConstant: 30).isActive = true //сознательно у тановил 30 иначе перекрывает лэйбл статуса, в макете некорректно
+        textField.widthAnchor.constraint(equalToConstant: 200).isActive = true
         }
     
     @objc func buttonPressed(_ sender: UIButton) {
-        if let text2 = label2.text {
-            print (text2)
+        if label2.text != nil {
+            label2.text = statusText
+            textField.resignFirstResponder()
+            print (statusText)
         }
+        }
+    
+    @objc func statusTextChanged(_ textField: UITextField) {
+        statusText = textField.text!
         }
     
 }
