@@ -2,7 +2,7 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
-    private lazy var button: UIButton = {
+    private lazy var setStatusButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemBlue
@@ -17,7 +17,7 @@ class ProfileHeaderView: UIView {
         return button
         }()
     
-    private var label1: UILabel = {
+    private lazy var fullNameLabel: UILabel = {
         let label1 = UILabel ()
         label1.translatesAutoresizingMaskIntoConstraints = false
         label1.text = "Hipster Cat"
@@ -26,7 +26,7 @@ class ProfileHeaderView: UIView {
         return label1
     }()
     
-    private var label2: UILabel = {
+    private lazy var statusLabel: UILabel = {
         let label2 = UILabel ()
         label2.translatesAutoresizingMaskIntoConstraints = false
         label2.text = "Waiting for something..."
@@ -35,7 +35,7 @@ class ProfileHeaderView: UIView {
         return label2
     }()
     
-    private var myImage: UIImageView = {
+    private lazy var avatarImageView: UIImageView = {
         let myImage  = UIImageView ()
         myImage.translatesAutoresizingMaskIntoConstraints = false
         myImage.image = UIImage(named: "avatar")
@@ -46,7 +46,7 @@ class ProfileHeaderView: UIView {
         return myImage
     }()
     
-    private lazy var textField: UITextField = {
+    private lazy var statusTextField: UITextField = {
         let textField = UITextField ()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .white
@@ -61,37 +61,39 @@ class ProfileHeaderView: UIView {
     private var statusText: String = ""
     
     override func didMoveToSuperview () {
-        self.addSubview(button)
-        self.addSubview(label2)
-        self.addSubview(myImage)
-        self.addSubview(label1)
-        self.addSubview(textField)
+        self.addSubview(setStatusButton)
+        self.addSubview(statusLabel)
+        self.addSubview(avatarImageView)
+        self.addSubview(fullNameLabel)
+        self.addSubview(statusTextField)
         setupObjects()
     }
     
     private func setupObjects () {
-        label1.topAnchor.constraint(equalTo: self.topAnchor, constant: 27).isActive = true
-        label1.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        myImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
-        myImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 16).isActive = true
-        myImage.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        myImage.heightAnchor.constraint(equalToConstant: 120).isActive = true
-        button.trailingAnchor.constraint(equalTo: superview!.safeAreaLayoutGuide.trailingAnchor, constant:-16.0).isActive = true
-        button.leadingAnchor.constraint(equalTo: superview!.safeAreaLayoutGuide.leadingAnchor, constant: 16.0).isActive = true
-        button.topAnchor.constraint(equalTo: myImage.bottomAnchor, constant: 16).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        label2.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -34).isActive = true
-        label2.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 30).isActive = true
-        textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
-        textField.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -1).isActive = true
-        textField.heightAnchor.constraint(equalToConstant: 30).isActive = true //сознательно у тановил 30 иначе перекрывает лэйбл статуса, в макете некорректно
-        textField.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        NSLayoutConstraint.activate([
+        fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
+        fullNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+        avatarImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
+        avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+        avatarImageView.widthAnchor.constraint(equalToConstant: 120),
+        avatarImageView.heightAnchor.constraint(equalToConstant: 120),
+        setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:-16.0),
+        setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16.0),
+        setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 40),
+        setStatusButton.heightAnchor.constraint(equalToConstant: 50),
+        statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -70),
+        statusLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 150),
+        statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+        statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -15),
+        statusTextField.heightAnchor.constraint(equalToConstant: 40),
+        statusTextField.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 150)
+        ])
         }
     
     @objc func buttonPressed(_ sender: UIButton) {
-        if label2.text != nil {
-            label2.text = statusText
-            textField.resignFirstResponder()
+        if statusLabel.text != nil {
+            statusLabel.text = statusText
+            statusTextField.resignFirstResponder()
             print (statusText)
         }
         }
