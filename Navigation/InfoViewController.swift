@@ -40,5 +40,4 @@ class InfoViewController: UIViewController {
         alert.addAction(action2)
         present(alert, animated: true)
         }
-    
 }
