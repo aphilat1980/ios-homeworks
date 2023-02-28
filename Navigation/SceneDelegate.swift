@@ -11,14 +11,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow (windowScene: scene)
         
         let feedViewController = UINavigationController(rootViewController: FeedViewController ())
-        let profileViewController = UINavigationController(rootViewController: ProfileViewController ())
+        //let profileViewController = UINavigationController(rootViewController: ProfileViewController ())
+        let logInViewController = UINavigationController(rootViewController: LogInViewController ())
        
         let tabBarController = UITabBarController()
         tabBarController.tabBar.backgroundColor = .white
-        tabBarController.viewControllers = [feedViewController, profileViewController]
+        tabBarController.viewControllers = [feedViewController, logInViewController]
         
         feedViewController.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "book.fill"), tag: 0)
-        profileViewController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.fill"), tag: 1)
+        logInViewController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.fill"), tag: 1)
 
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()

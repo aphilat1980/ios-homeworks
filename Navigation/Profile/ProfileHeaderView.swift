@@ -60,14 +60,28 @@ class ProfileHeaderView: UIView {
     
     private var statusText: String = ""
     
-    override func didMoveToSuperview () {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         self.addSubview(setStatusButton)
         self.addSubview(statusLabel)
         self.addSubview(avatarImageView)
         self.addSubview(fullNameLabel)
         self.addSubview(statusTextField)
         setupObjects()
-    }
+        }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+        }
+    
+    //override func didMoveToSuperview () {
+     //   self.addSubview(setStatusButton)
+     //   self.addSubview(statusLabel)
+    //    self.addSubview(avatarImageView)
+     //   self.addSubview(fullNameLabel)
+     //   self.addSubview(statusTextField)
+     //   setupObjects()
+  //  }
     
     private func setupObjects () {
         NSLayoutConstraint.activate([
