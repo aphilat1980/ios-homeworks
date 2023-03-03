@@ -1,39 +1,57 @@
 import UIKit
 
 class FeedViewController: UIViewController {
+    
+    let post = Post(title: "Пост 1")
 
-    private lazy var button: UIButton = {
+    private lazy var button1: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
+        //button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 8
-        button.setTitle("Перейти на пост", for: .normal)
+        button.setTitle("Перейти на пост - кнопка 1", for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
         return button
         }()
     
+    private lazy var button2: UIButton = {
+        let button = UIButton()
+        //button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = 8
+        button.setTitle("Перейти на пост - кнопка 2", for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+        return button
+        }()
+    
+    private lazy var stackView: UIStackView = { [unowned self] in
+        let stackView = UIStackView ()
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 10.0
+        stackView.addArrangedSubview(self.button1)
+        stackView.addArrangedSubview(self.button2)
+        
+        return stackView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .systemPink
-        view.addSubview(button)
         
+        view.backgroundColor = .systemPink
+        view.addSubview(stackView)
+        setupConstraints()
+        
+        }
+    
+    private func setupConstraints () {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
             NSLayoutConstraint.activate([
-                button.leadingAnchor.constraint(
-                equalTo: safeAreaLayoutGuide.leadingAnchor,
-                constant: 20.0
-                ),
-                button.trailingAnchor.constraint(
-                equalTo: safeAreaLayoutGuide.trailingAnchor,
-                constant: -20.0
-                ),
-                button.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
-                button.heightAnchor.constraint(equalToConstant: 44.0)
+                stackView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+                stackView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
                 ])
-        button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
-        
-    }
-    let post = Post(title: "Пост 1")
+        }
     
     @objc func buttonPressed(_ sender: UIButton) {
         let postViewController = PostViewController()
