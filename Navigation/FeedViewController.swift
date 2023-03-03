@@ -6,7 +6,6 @@ class FeedViewController: UIViewController {
 
     private lazy var button1: UIButton = {
         let button = UIButton()
-        //button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 8
         button.setTitle("Перейти на пост - кнопка 1", for: .normal)
@@ -16,7 +15,6 @@ class FeedViewController: UIViewController {
     
     private lazy var button2: UIButton = {
         let button = UIButton()
-        //button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 8
         button.setTitle("Перейти на пост - кнопка 2", for: .normal)
