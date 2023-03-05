@@ -1,46 +1,71 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
-    private lazy var profileHeaderView: ProfileHeaderView = {
-        let profileHeaderView = ProfileHeaderView ()
-        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
-        return profileHeaderView
+    
+    fileprivate let data = Post.make()
+    
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView.init(
+            frame: .zero,
+            style: .grouped //если надо закрепить header то .plain
+        )
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: ProfileHeaderView.header_id)
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.id)
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        return tableView
     }()
     
-    private lazy var setTitleButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .systemBlue
-        button.setTitle("Set title", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        //button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        return button
-        }()
-   
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.navigationController?.navigationBar.isHidden = false
-        self.navigationItem.title = "Profile"
-        self.navigationController?.navigationBar.backgroundColor = .white
-        view.backgroundColor = .lightGray
-        view.addSubview(profileHeaderView)
-        view.addSubview(setTitleButton)
-        setupView()
+        view.backgroundColor = .white
+        view.addSubview(tableView)
+        setupConstraints()
     }
     
-    private func setupView () {
-        let safeAreaLayoutGuide = view.safeAreaLayoutGuide
-                NSLayoutConstraint.activate([
-                    profileHeaderView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor),
-                    profileHeaderView.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor),
-                    profileHeaderView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-                    profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
-                    setTitleButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-                    setTitleButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor),
-                    setTitleButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor),
-                    setTitleButton.heightAnchor.constraint(equalToConstant: 50)
-                    ])
+    private func setupConstraints() {
+        let safeAreaGuide = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor)
+        ])
     }
     
 }
+
+extension ProfileViewController: UITableViewDataSource {
+        
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        data.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.id, for: indexPath) as? PostTableViewCell else {
+        fatalError("could not dequeueReusableCell")
+        }
+        let currentLastItem = data[indexPath.row]
+        cell.post = currentLastItem
+        return cell
+    }
+}
+extension ProfileViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+    guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileHeaderView.header_id) as? ProfileHeaderView else {
+            fatalError("could not dequeueReusableCell")
+        }
+        return headerView
+    }
+}
+
+
+
+    
+
