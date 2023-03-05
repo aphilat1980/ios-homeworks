@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let logInViewController = UINavigationController(rootViewController: LogInViewController ())
        
         let tabBarController = UITabBarController()
-        tabBarController.tabBar.backgroundColor = .white
+        tabBarController.tabBar.backgroundColor = .systemGray6
         tabBarController.viewControllers = [feedViewController, logInViewController]
         
         feedViewController.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "book.fill"), tag: 0)

@@ -18,3 +18,13 @@ extension Post {
         
     }
 }
+struct PhotoImages {
+    let photo: String
+}
+
+extension PhotoImages {
+    static func make() -> [PhotoImages] {
+        [PhotoImages(photo: "1"), PhotoImages(photo:"2"), PhotoImages(photo:"3"), PhotoImages(photo:"4"), PhotoImages(photo:"5"), PhotoImages(photo:"6"), PhotoImages(photo:"7"), PhotoImages(photo:"8"), PhotoImages(photo:"9"), PhotoImages(photo:"10"), PhotoImages(photo:"11"), PhotoImages(photo:"12"), PhotoImages(photo:"13"), PhotoImages(photo:"14"), PhotoImages(photo:"15"), PhotoImages(photo:"16"), PhotoImages(photo:"17"), PhotoImages(photo:"18"), PhotoImages(photo:"19"), PhotoImages(photo:"20")]
+    }
+        
+}
