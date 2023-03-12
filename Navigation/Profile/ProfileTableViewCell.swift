@@ -45,6 +45,9 @@ class ProfileTableViewCell: UITableViewCell {
         myImage.layer.borderColor = UIColor.white.cgColor
         myImage.layer.cornerRadius = 60
         myImage.clipsToBounds = true
+        //let tapImage = UITapGestureRecognizer(target: self, action: #selector(didTapImage))
+        //tapImage.numberOfTapsRequired = 2
+        //myImage.addGestureRecognizer(tapImage)
         return myImage
     }()
     
@@ -64,6 +67,7 @@ class ProfileTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        //contentView.isUserInteractionEnabled = true
         contentView.backgroundColor = .systemGray6
         contentView.addSubview(setStatusButton)
         contentView.addSubview(statusLabel)
@@ -114,6 +118,10 @@ class ProfileTableViewCell: UITableViewCell {
     @objc func statusTextChanged(_ textField: UITextField) {
         statusText = textField.text!
     }
+    
+    //@objc private func didTapImage() {
+    //    print ("Taped the Image")
+   // }
     
 
 }

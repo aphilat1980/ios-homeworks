@@ -121,5 +121,8 @@ class PhotosTableViewCell: UITableViewCell {
             grayLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
+   
+    
+    
     
 }
