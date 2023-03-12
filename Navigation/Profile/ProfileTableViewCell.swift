@@ -1,8 +1,8 @@
 import UIKit
 
-class ProfileHeaderView: UITableViewHeaderFooterView {
-    
-    static let header_id = "customHeaderTableView_id"
+class ProfileTableViewCell: UITableViewCell {
+
+    static let id = "profileTableViewCell_id"
     
     private lazy var setStatusButton: UIButton = {
         let button = UIButton()
@@ -62,8 +62,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     private var statusText: String = ""
     
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .systemGray6
         contentView.addSubview(setStatusButton)
         contentView.addSubview(statusLabel)
@@ -78,6 +78,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     private func setupObjects () {
+        let constraint1 = setStatusButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+        constraint1.priority = .defaultHigh
         NSLayoutConstraint.activate([
         fullNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 27),
         fullNameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
@@ -85,6 +87,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
         avatarImageView.widthAnchor.constraint(equalToConstant: 120),
         avatarImageView.heightAnchor.constraint(equalToConstant: 120),
+        //constaint1
         setStatusButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant:-16.0),
         setStatusButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
         setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 40),
@@ -95,7 +98,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -15),
         statusTextField.heightAnchor.constraint(equalToConstant: 40),
         statusTextField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 150),
-        setStatusButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+        constraint1
         ])
         }
     
@@ -103,12 +106,14 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         if statusLabel.text != nil {
             statusLabel.text = statusText
             statusTextField.resignFirstResponder()
-            print (statusText)
+            //print (statusText)
         }
-        }
+        
+    }
     
     @objc func statusTextChanged(_ textField: UITextField) {
         statusText = textField.text!
-        }
+    }
     
+
 }
