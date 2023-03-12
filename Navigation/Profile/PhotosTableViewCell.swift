@@ -7,7 +7,6 @@ class PhotosTableViewCell: UITableViewCell {
     private lazy var image1: UIImageView = {
         let myImage  = UIImageView ()
         myImage.translatesAutoresizingMaskIntoConstraints = false
-        //myImage.contentMode = .scaleAspectFit
         myImage.image = UIImage(named: "1")
         myImage.backgroundColor = .black
         myImage.layer.cornerRadius = 6
@@ -17,7 +16,6 @@ class PhotosTableViewCell: UITableViewCell {
     private lazy var image2: UIImageView = {
         let myImage  = UIImageView ()
         myImage.translatesAutoresizingMaskIntoConstraints = false
-        //myImage.contentMode = .scaleAspectFit
         myImage.image = UIImage(named: "2")
         myImage.backgroundColor = .black
         myImage.layer.cornerRadius = 6
@@ -27,7 +25,6 @@ class PhotosTableViewCell: UITableViewCell {
     private lazy var image3: UIImageView = {
         let myImage  = UIImageView ()
         myImage.translatesAutoresizingMaskIntoConstraints = false
-        //myImage.contentMode = .scaleAspectFit
         myImage.image = UIImage(named: "3")
         myImage.backgroundColor = .black
         myImage.layer.cornerRadius = 6
@@ -37,7 +34,6 @@ class PhotosTableViewCell: UITableViewCell {
     private lazy var image4: UIImageView = {
         let myImage  = UIImageView ()
         myImage.translatesAutoresizingMaskIntoConstraints = false
-        //myImage.contentMode = .scaleAspectFit
         myImage.image = UIImage(named: "4")
         myImage.backgroundColor = .black
         myImage.layer.cornerRadius = 6
@@ -51,7 +47,6 @@ class PhotosTableViewCell: UITableViewCell {
         label.text = "Photos"
         label.font = UIFont.boldSystemFont(ofSize: 24)
         label.textColor = .black
-        //label.numberOfLines = 2
         return label
     }()
     
