@@ -4,6 +4,43 @@ class ProfileViewController: UIViewController {
     
     fileprivate let data = Post.make()
     
+    //создаю "поверх" ячейки в таблице UIImageView для нажатия и запуска анимации
+    private lazy var avView: UIImageView = { [unowned self] in
+        let view = UIImageView()
+        view.frame = CGRect(x: 16, y: 16, width: 120, height: 120)
+        view.image = UIImage(named: "avatar")
+        view.isUserInteractionEnabled = true
+        view.layer.borderWidth = 3
+        view.layer.borderColor = UIColor.white.cgColor
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 60
+        let tapImage = UITapGestureRecognizer( target: self, action: #selector(didTapImage))
+        view.addGestureRecognizer(tapImage)
+            return view
+    }()
+    //создаю backgroundView, который будет перекрывать контент при анимации
+    private lazy var backgroundView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.alpha = 0
+        return view
+    }()
+    
+    //создаю UIImageView, для закрытия анимации
+    private lazy var xImage: UIImageView = {[unowned self] in
+        let myImage  = UIImageView ()
+        myImage.contentMode = .scaleAspectFit
+        myImage.image = UIImage(systemName: "clear")
+        myImage.frame = CGRect(x: self.view.frame.width - 56, y: 40, width: 40, height: 40)
+        myImage.alpha = 0
+        myImage.tintColor = .black
+        myImage.isUserInteractionEnabled = true
+        let tapX = UITapGestureRecognizer( target: self, action: #selector(didTapX))
+        myImage.addGestureRecognizer(tapX)
+        return myImage
+    }()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init(
             frame: .zero,
@@ -33,6 +70,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(tableView)
+        tableView.addSubview(avView)
         setupConstraints()
     }
     
@@ -46,6 +84,80 @@ class ProfileViewController: UIViewController {
         ])
     }
     
+    @objc private func didTapImage() {
+        launchAnimation()
+    }
+    
+    @objc private func didTapX() {
+        launchReverseAnimation()
+    }
+    
+    private func launchAnimation() {
+        
+        tableView.addSubview(backgroundView)
+        tableView.addSubview(avView)
+        tableView.addSubview(xImage)
+        
+        let safeAreaGuide = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            backgroundView.leadingAnchor.constraint(equalTo: safeAreaGuide.leadingAnchor),
+            backgroundView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: safeAreaGuide.trailingAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor)
+        ])
+        
+        UIView.animateKeyframes(withDuration: 1.6, delay: 0.5, options:.calculationModeLinear, animations: {
+            // 1
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.3125) {
+                self.avView.center = self.view.center
+                self.backgroundView.alpha = 0.45
+            }
+            // 2
+            UIView.addKeyframe(withRelativeStartTime: 0.3125,relativeDuration: 0.3125) {
+                self.avView.bounds.size = CGSize(width: self.view.safeAreaLayoutGuide.layoutFrame.width, height: self.view.safeAreaLayoutGuide.layoutFrame.width)
+                self.avView.layer.cornerRadius = 0
+                self.avView.layer.borderWidth = 10
+                self.backgroundView.alpha = 0.9
+            }
+            // 3
+            UIView.addKeyframe(withRelativeStartTime: 0.625,relativeDuration: 0.375) {
+                self.xImage.alpha = 1
+            }
+        },
+            completion: { finished in
+            self.avView.isUserInteractionEnabled = false //устанавливаю false, чтобы аватар неактивным был для нажатия
+            }
+        )
+    }
+    
+    private func launchReverseAnimation() {
+            
+        UIView.animateKeyframes(withDuration: 1.6, delay: 0.5, options:.calculationModeLinear, animations: {
+            // 1
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.375) {
+                self.xImage.alpha = 0
+            }
+            // 2
+            UIView.addKeyframe(withRelativeStartTime: 0.375, relativeDuration: 0.3125) {
+                self.avView.bounds.size = CGSize(width: 120, height: 120)
+                self.avView.layer.cornerRadius = 60
+                self.avView.layer.borderWidth = 3
+                self.backgroundView.alpha = 0.45
+            }
+            // 1
+            UIView.addKeyframe(withRelativeStartTime: 0.6875, relativeDuration: 0.3125) {
+                self.backgroundView.alpha = 0
+                self.avView.center = CGPoint(x: 76, y: 76)
+            }
+            
+        },
+            completion: { finished in
+            self.backgroundView.removeFromSuperview()
+            self.xImage.removeFromSuperview()
+            self.avView.isUserInteractionEnabled  = true
+        })
+    }
+   
 }
 
 extension ProfileViewController: UITableViewDataSource {
