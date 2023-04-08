@@ -1,6 +1,7 @@
 
 
 import UIKit
+import StorageService
 
 class PhotosCollectionViewCell: UICollectionViewCell {
     
@@ -37,7 +38,8 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     }
     
     func setup( with profile: PhotoImages) {
-         image.image = UIImage(named: profile.photo)
+        
+        image.image = UIImage(named: profile.photo)
     }
     
 }
