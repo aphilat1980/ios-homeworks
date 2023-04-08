@@ -106,7 +106,6 @@ class ProfileTableViewCell: UITableViewCell {
         if statusLabel.text != nil {
             statusLabel.text = statusText
             statusTextField.resignFirstResponder()
-            //print (statusText)
         }
         
     }
@@ -115,5 +114,4 @@ class ProfileTableViewCell: UITableViewCell {
         statusText = textField.text!
     }
     
-
 }
