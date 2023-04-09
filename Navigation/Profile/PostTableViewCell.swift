@@ -1,4 +1,4 @@
-
+import iOSIntPackage
 import UIKit
 import StorageService
 
@@ -26,7 +26,7 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var image: UIImageView = {
+    var image: UIImageView = {
         let myImage  = UIImageView ()
         myImage.translatesAutoresizingMaskIntoConstraints = false
         myImage.contentMode = .scaleAspectFit
@@ -67,6 +67,8 @@ class PostTableViewCell: UITableViewCell {
         contentView.addSubview(my_description)
         contentView.addSubview(likes)
         contentView.addSubview(views)
+        //let a = ImageProcessor()
+        //a.processImage(sourceImage: self.image.image!, filter: .fade, completion: { im in })
         setupConstraints()
     }
     required init?(coder: NSCoder) {

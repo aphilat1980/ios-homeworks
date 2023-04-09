@@ -1,3 +1,4 @@
+import SnapKit
 import UIKit
 
 class ProfileTableViewCell: UITableViewCell {
@@ -78,7 +79,8 @@ class ProfileTableViewCell: UITableViewCell {
     }
     
     private func setupObjects () {
-        let constraint1 = setStatusButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+        // ПРЕДЫДУЩАЯ ВЕРСТКА В UIKit
+        /*let constraint1 = setStatusButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         constraint1.priority = .defaultHigh
         NSLayoutConstraint.activate([
         fullNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 27),
@@ -99,15 +101,42 @@ class ProfileTableViewCell: UITableViewCell {
         statusTextField.heightAnchor.constraint(equalToConstant: 40),
         statusTextField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 150),
         constraint1
-        ])
+        ])*/
+        
+        //ТЕКУЩАЯ ВЕРСТКА в SnapKit
+        fullNameLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(contentView).offset(27)
+            make.centerX.equalTo(contentView)
         }
+        avatarImageView.snp.makeConstraints { (make) -> Void in
+            make.left.equalTo(contentView).offset(16)
+            make.top.equalTo(contentView).offset(16)
+            make.width.height.equalTo(120)
+        }
+        setStatusButton.snp.makeConstraints { (make) -> Void in
+            make.leading.equalTo(contentView).offset(16)
+            make.trailing.equalTo(contentView).offset(-16)
+            make.top.equalTo(avatarImageView.snp.bottom).offset(40)
+            make.bottom.equalTo(contentView).offset(-16).priority(.high)
+            make.height.equalTo(50)
+        }
+        statusLabel.snp.makeConstraints { (make) -> Void in
+            make.bottom.equalTo(setStatusButton.snp.top).offset(-70)
+            make.left.equalTo(contentView).offset(150)
+        }
+        statusTextField.snp.makeConstraints { (make) -> Void in
+            make.trailing.equalTo(contentView).offset(-16)
+            make.bottom.equalTo(setStatusButton.snp.top).offset(-15)
+            make.height.equalTo(40)
+            make.left.equalTo(contentView).offset(150)
+        }
+    }
     
     @objc func buttonPressed(_ sender: UIButton) {
         if statusLabel.text != nil {
             statusLabel.text = statusText
             statusTextField.resignFirstResponder()
         }
-        
     }
     
     @objc func statusTextChanged(_ textField: UITextField) {

@@ -1,3 +1,4 @@
+import iOSIntPackage
 import StorageService
 import UIKit
 
@@ -202,6 +203,11 @@ extension ProfileViewController: UITableViewDataSource {
             }
             let currentLastItem = data[indexPath.row]
             cell.post = currentLastItem
+            //создаю экземпляр структуры ImageProcessor чтобы запустить метод processImage
+            let imageProcessor = ImageProcessor()
+            imageProcessor.processImage(sourceImage: cell.image.image!, filter: .allCases.randomElement()!, completion: { new_image in
+                cell.image.image = new_image
+            })
             return cell
         
         default: break
