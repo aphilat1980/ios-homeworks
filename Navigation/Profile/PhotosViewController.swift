@@ -1,5 +1,5 @@
 
-
+import StorageService
 import UIKit
 
 class PhotosViewController: UIViewController {
