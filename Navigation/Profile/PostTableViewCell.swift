@@ -1,4 +1,3 @@
-import iOSIntPackage
 import UIKit
 import StorageService
 
@@ -19,7 +18,6 @@ class PostTableViewCell: UITableViewCell {
     private lazy var author: UILabel = {
         let label = UILabel ()
         label.translatesAutoresizingMaskIntoConstraints = false
-        //label.text = Post.author
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .black
         label.numberOfLines = 2
@@ -67,8 +65,6 @@ class PostTableViewCell: UITableViewCell {
         contentView.addSubview(my_description)
         contentView.addSubview(likes)
         contentView.addSubview(views)
-        //let a = ImageProcessor()
-        //a.processImage(sourceImage: self.image.image!, filter: .fade, completion: { im in })
         setupConstraints()
     }
     required init?(coder: NSCoder) {
