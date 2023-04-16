@@ -1,4 +1,3 @@
-
 import UIKit
 import StorageService
 
@@ -19,14 +18,13 @@ class PostTableViewCell: UITableViewCell {
     private lazy var author: UILabel = {
         let label = UILabel ()
         label.translatesAutoresizingMaskIntoConstraints = false
-        //label.text = Post.author
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .black
         label.numberOfLines = 2
         return label
     }()
     
-    private lazy var image: UIImageView = {
+    var image: UIImageView = {
         let myImage  = UIImageView ()
         myImage.translatesAutoresizingMaskIntoConstraints = false
         myImage.contentMode = .scaleAspectFit
