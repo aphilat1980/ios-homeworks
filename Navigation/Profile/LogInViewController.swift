@@ -146,9 +146,30 @@ class LogInViewController: UIViewController {
         }
     
     @objc func buttonPressed(_ sender: UIButton) {
+        #if DEBUG
+        
+        let a = TestUserService()
+        let user = a.userChecking(userLogin: phoneTextField.text!)
         let profileViewController = ProfileViewController()
+        profileViewController.currentUser = user
         navigationController?.pushViewController(profileViewController, animated: true)
+        
+        #else
+        
+        let a = CurrentUserService()
+        if let user = a.userChecking(userLogin: phoneTextField.text!) {
+            let profileViewController = ProfileViewController()
+            profileViewController.currentUser = user
+            navigationController?.pushViewController(profileViewController, animated: true)
+        } else {
+            
+            let alert = UIAlertController(title: "Ошибка входа", message: "Не существует такого пользователя, попробуйте снова", preferredStyle: .alert)
+            let action1 = UIAlertAction(title: "Вернуться", style: .default, handler: {action in })
+            alert.addAction(action1)
+            present(alert, animated: true)
         }
+        #endif
+    }
     
     
     @objc func keyboardWillShow(notification:NSNotification) {

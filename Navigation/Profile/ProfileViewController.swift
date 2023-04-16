@@ -3,13 +3,15 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    var currentUser: User?
+    
     fileprivate let data = Post.make()
     
     //создаю "поверх" ячейки в таблице UIImageView для нажатия и запуска анимации
     private lazy var avView: UIImageView = { [unowned self] in
         let view = UIImageView()
         view.frame = CGRect(x: 16, y: 16, width: 120, height: 120)
-        view.image = UIImage(named: "avatar")
+        view.image = currentUser?.userAvatar
         view.isUserInteractionEnabled = true
         view.layer.borderWidth = 3
         view.layer.borderColor = UIColor.white.cgColor
@@ -189,6 +191,9 @@ extension ProfileViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.id, for: indexPath) as? ProfileTableViewCell else {
             fatalError("could not dequeueReusableCell")
             }
+            cell.fullNameLabel.text = currentUser?.userFullName
+            cell.statusLabel.text = currentUser?.userStatus
+            cell.avatarImageView.image = currentUser?.userAvatar
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.id, for: indexPath) as? PhotosTableViewCell else {

@@ -19,16 +19,15 @@ class ProfileTableViewCell: UITableViewCell {
         return button
         }()
     
-    private lazy var fullNameLabel: UILabel = {
+    public lazy var fullNameLabel: UILabel = {
         let label1 = UILabel ()
         label1.translatesAutoresizingMaskIntoConstraints = false
-        label1.text = "Hipster Cat"
         label1.font = UIFont.boldSystemFont(ofSize: 18)
         label1.textColor = .black
         return label1
     }()
     
-    private lazy var statusLabel: UILabel = {
+    public lazy var statusLabel: UILabel = {
         let label2 = UILabel ()
         label2.translatesAutoresizingMaskIntoConstraints = false
         label2.text = "Waiting for something..."
@@ -37,10 +36,9 @@ class ProfileTableViewCell: UITableViewCell {
         return label2
     }()
     
-    private lazy var avatarImageView: UIImageView = {
+    public lazy var avatarImageView: UIImageView = {
         let myImage  = UIImageView ()
         myImage.translatesAutoresizingMaskIntoConstraints = false
-        myImage.image = UIImage(named: "avatar")
         myImage.layer.borderWidth = 3
         myImage.layer.borderColor = UIColor.white.cgColor
         myImage.layer.cornerRadius = 60
