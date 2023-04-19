@@ -13,6 +13,7 @@
 		17A17CE229E134E600E56F33 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 17A17CDB29E134E600E56F33 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		17A17CE929E1350B00E56F33 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170FF4C6299D089F00EF43C8 /* Post.swift */; };
 		17A17CEE29E9921200E56F33 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A17CED29E9921200E56F33 /* User.swift */; };
+		17A17CF029EBC65D00E56F33 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A17CEF29EBC65D00E56F33 /* Checker.swift */; };
 		17A223BF299A78A700DF17C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A223BE299A78A700DF17C7 /* AppDelegate.swift */; };
 		17A223C1299A78A700DF17C7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A223C0299A78A700DF17C7 /* SceneDelegate.swift */; };
 		17A223C3299A78A700DF17C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A223C2299A78A700DF17C7 /* ViewController.swift */; };
@@ -59,6 +60,7 @@
 		17A17CDB29E134E600E56F33 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A17CDD29E134E600E56F33 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		17A17CED29E9921200E56F33 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		17A17CEF29EBC65D00E56F33 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		17A223BB299A78A700DF17C7 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A223BE299A78A700DF17C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17A223C0299A78A700DF17C7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			children = (
 				17A223BE299A78A700DF17C7 /* AppDelegate.swift */,
 				17A17CED29E9921200E56F33 /* User.swift */,
+				17A17CEF29EBC65D00E56F33 /* Checker.swift */,
 				17A223C0299A78A700DF17C7 /* SceneDelegate.swift */,
 				17A223F8299BBB5200DF17C7 /* PostViewController.swift */,
 				17A223C2299A78A700DF17C7 /* ViewController.swift */,
@@ -276,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17D32F0229AE584400C4A023 /* PostTableViewCell.swift in Sources */,
+				17A17CF029EBC65D00E56F33 /* Checker.swift in Sources */,
 				17A223F9299BBB5200DF17C7 /* PostViewController.swift in Sources */,
 				17A223C3299A78A700DF17C7 /* ViewController.swift in Sources */,
 				17D32F0A29B4739200C4A023 /* ProfileTableViewCell.swift in Sources */,

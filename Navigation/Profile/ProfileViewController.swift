@@ -3,6 +3,11 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    convenience init (user: User){
+        self.init()
+        self.currentUser = user
+    }
+    
     var currentUser: User?
     
     fileprivate let data = Post.make()

@@ -9,10 +9,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let scene = (scene as? UIWindowScene) else { return }
         let window = UIWindow (windowScene: scene)
-        
+        //создаем экземпляр LoginViewController
+        let exLoginController = LogInViewController()
         let feedViewController = UINavigationController(rootViewController: FeedViewController ())
-        //let profileViewController = UINavigationController(rootViewController: ProfileViewController ())
-        let logInViewController = UINavigationController(rootViewController: LogInViewController ())
+        let logInViewController = UINavigationController(rootViewController: exLoginController)
        
         let tabBarController = UITabBarController()
         tabBarController.tabBar.backgroundColor = .systemGray6
@@ -20,6 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         feedViewController.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "book.fill"), tag: 0)
         logInViewController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.fill"), tag: 1)
+    
+        //задача 1
+        //exLoginController.loginDelegate = LoginInspector()
+        //задача 2 - через фабрику
+        exLoginController.loginDelegate = MyLoginFactory().makeLoginInspector()
 
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()

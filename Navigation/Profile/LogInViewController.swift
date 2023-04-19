@@ -3,6 +3,9 @@ import UIKit
 
 class LogInViewController: UIViewController {
 
+    public var loginDelegate: LoginViewControllerDelegate?
+    
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
@@ -42,7 +45,7 @@ class LogInViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var phoneTextField: TextFieldWithPadding = {
+    public lazy var phoneTextField: TextFieldWithPadding = {
         let textField = TextFieldWithPadding ()
         textField.backgroundColor = .systemGray6
         textField.layer.borderWidth = 0.5
@@ -146,31 +149,32 @@ class LogInViewController: UIViewController {
         }
     
     @objc func buttonPressed(_ sender: UIButton) {
-        #if DEBUG
-        
-        let a = TestUserService()
-        let user = a.userChecking(userLogin: phoneTextField.text!)
-        let profileViewController = ProfileViewController()
-        profileViewController.currentUser = user
-        navigationController?.pushViewController(profileViewController, animated: true)
-        
-        #else
-        
-        let a = CurrentUserService()
-        if let user = a.userChecking(userLogin: phoneTextField.text!) {
-            let profileViewController = ProfileViewController()
-            profileViewController.currentUser = user
-            navigationController?.pushViewController(profileViewController, animated: true)
+       
+        if loginDelegate!.check(checker: Checker.shared, user: phoneTextField.text!, password: passwordTextField.text!) {
+            
+            #if DEBUG
+            let service = TestUserService()
+            #else
+            let service = CurrentUserService()
+            #endif
+            
+            if let user = service.userChecking(userLogin: phoneTextField.text!) {
+                let profileViewController = ProfileViewController(user: user)
+                navigationController?.pushViewController(profileViewController, animated: true)
+            } else {
+                let alert = UIAlertController(title: "Ошибка входа", message: "Пароль и логин верные, но профиль пользователя более недоступен", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Вернуться", style: .default, handler: {action in }))
+                present(alert, animated: true)
+            }
         } else {
             
-            let alert = UIAlertController(title: "Ошибка входа", message: "Не существует такого пользователя, попробуйте снова", preferredStyle: .alert)
-            let action1 = UIAlertAction(title: "Вернуться", style: .default, handler: {action in })
-            alert.addAction(action1)
+            let alert = UIAlertController(title: "Ошибка входа", message: "Пароль и логин некорректные", preferredStyle: .alert)
+            alert.addAction (UIAlertAction(title: "Вернуться", style: .default))
             present(alert, animated: true)
+            
+        
         }
-        #endif
     }
-    
     
     @objc func keyboardWillShow(notification:NSNotification) {
 
