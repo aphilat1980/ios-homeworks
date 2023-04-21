@@ -1,11 +1,15 @@
 
+import iOSIntPackage
 import StorageService
 import UIKit
 
 class PhotosViewController: UIViewController {
-
-    fileprivate lazy var photosData = PhotoImages.make()
     
+    //fileprivate lazy var photosData = PhotoImages.make()
+    lazy var photosData: [UIImage] = []
+   
+    
+    let facade = ImagePublisherFacade()
     
     private let collectionView: UICollectionView = {
         let viewLayout = UICollectionViewFlowLayout()
@@ -40,6 +44,13 @@ class PhotosViewController: UIViewController {
         setupConstraints()
         collectionView.dataSource = self
         collectionView.delegate = self
+        facade.subscribe(self)
+        /*вариант вызова метода с изображениями из библиотеки iOSlntPackage
+        facade.addImagesWithTimer(time: 0.5, repeat: 20)*/
+        //вариант вызова метода со своими изображениями
+        facade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: PhotoImages.makeImageArray())
+        //проверка условия для "отписки"
+        photosData.count == 20 ? facade.removeSubscription(for: self):()
     }
     
     private func setupConstraints() {
@@ -92,3 +103,9 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 
 }
 
+extension PhotosViewController: ImageLibrarySubscriber {
+    func receive(images: [UIImage]) {
+        self.photosData = images
+        self.collectionView.reloadData()
+    }
+}

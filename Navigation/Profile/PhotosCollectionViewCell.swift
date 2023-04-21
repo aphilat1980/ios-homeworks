@@ -16,7 +16,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        contentView.backgroundColor = .purple
+        contentView.backgroundColor = .black
         contentView.addSubview(image)
         setupConstraints()
         
@@ -37,9 +37,10 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func setup( with profile: PhotoImages) {
+    func setup( with profile: UIImage) {
         
-        image.image = UIImage(named: profile.photo)
+        //image.image = UIImage(named: profile.photo)
+        image.image = profile
     }
     
 }
