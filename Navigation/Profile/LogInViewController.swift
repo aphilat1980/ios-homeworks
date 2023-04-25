@@ -81,7 +81,7 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
-    private lazy var logInButton: UIButton = {
+    /*private lazy var logInButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setBackgroundImage(UIImage (named: "buttonPixel"), for:.normal)
@@ -92,10 +92,23 @@ class LogInViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(buttonPressed()), for: .touchUpInside)
         button.clipsToBounds = true
         return button
-    }()
+    }()*/
+    
+    private lazy var logInButton: CustomButton = {
+        let button = CustomButton(title: "Log In", radius: 10, backColor: .systemBlue)
+        button.setBackgroundImage(UIImage (named: "buttonPixel"), for:.normal)
+        let image = button.currentBackgroundImage
+        button.setBackgroundImage (image?.image(alpha: 0.8), for: .highlighted)
+        button.setBackgroundImage (image?.image(alpha: 0.8), for: .selected)
+        button.setBackgroundImage (image?.image(alpha: 0.8), for: .disabled)
+        button.setTitleColor(.white, for: .normal)
+        button.clipsToBounds = true
+        button.completionHandler = {self.buttonPressed()}
+        return button
+  }()
     
     
     override func viewDidLoad() {
@@ -148,7 +161,7 @@ class LogInViewController: UIViewController {
             ])
         }
     
-    @objc func buttonPressed(_ sender: UIButton) {
+    @objc func buttonPressed() {
        
         if loginDelegate!.check(checker: Checker.shared, user: phoneTextField.text!, password: passwordTextField.text!) {
             

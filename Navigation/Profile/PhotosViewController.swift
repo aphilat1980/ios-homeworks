@@ -49,8 +49,13 @@ class PhotosViewController: UIViewController {
         facade.addImagesWithTimer(time: 0.5, repeat: 20)*/
         //вариант вызова метода со своими изображениями
         facade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: PhotoImages.makeImageArray())
-        //проверка условия для "отписки"
-        photosData.count == 20 ? facade.removeSubscription(for: self):()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        facade.removeSubscription(for: self)
+        facade.rechargeImageLibrary()
     }
     
     private func setupConstraints() {

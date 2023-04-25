@@ -4,7 +4,7 @@ class ProfileTableViewCell: UITableViewCell {
 
     static let id = "profileTableViewCell_id"
     
-    private lazy var setStatusButton: UIButton = {
+    /*private lazy var setStatusButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemBlue
@@ -15,9 +15,19 @@ class ProfileTableViewCell: UITableViewCell {
         button.layer.shadowRadius = 4.0
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(buttonPressed()), for: .touchUpInside)
         return button
-        }()
+        }()*/
+    private lazy var setStatusButton: CustomButton = {
+        let button = CustomButton(title: "Show status", radius: 4, backColor: .systemBlue)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
+        button.layer.shadowRadius = 4.0
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.7
+        button.completionHandler = {self.buttonPressed()}
+        return button
+  }()
     
     public lazy var fullNameLabel: UILabel = {
         let label1 = UILabel ()
@@ -100,7 +110,7 @@ class ProfileTableViewCell: UITableViewCell {
         ])
         }
     
-    @objc func buttonPressed(_ sender: UIButton) {
+    @objc func buttonPressed() {
         if statusLabel.text != nil {
             statusLabel.text = statusText
             statusTextField.resignFirstResponder()
