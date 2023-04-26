@@ -36,7 +36,7 @@ public class TestUserService: UserService {
 }
 
 
-public class CustomButton: UIButton {
+/*public class CustomButton: UIButton {
     var completionHandler: (() -> Void)?
     init (title:String, radius:CGFloat, backColor:UIColor) {
         super.init(frame: CGRect())
@@ -53,12 +53,4 @@ public class CustomButton: UIButton {
     @objc private func buttonTapped() {
         completionHandler?()
     }
-}
-
-/*public class FeedModel {
-    let secretWord = "barcelona"
-    //public func check (word: String) -> Bool {
-    //    return word == self.secretWord
-    //}
-    
 }*/
