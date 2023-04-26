@@ -55,10 +55,10 @@ public class CustomButton: UIButton {
     }
 }
 
-public class FeedModel {
+/*public class FeedModel {
     let secretWord = "barcelona"
-    public func check (word: String) -> Bool {
-        return word == self.secretWord
-    }
+    //public func check (word: String) -> Bool {
+    //    return word == self.secretWord
+    //}
     
-}
+}*/

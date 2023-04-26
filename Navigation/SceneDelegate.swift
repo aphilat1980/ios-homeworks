@@ -11,7 +11,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow (windowScene: scene)
         //создаем экземпляр LoginViewController
         let exLoginController = LogInViewController()
-        let feedViewController = UINavigationController(rootViewController: FeedViewController ())
+        let feedModel = FeedModel()
+        let feedViewModel = FeedViewModel(feedModel: feedModel)
+        let feedVC = FeedViewController(feedViewModel: feedViewModel)
+        let feedViewController = UINavigationController(rootViewController: feedVC)
         let logInViewController = UINavigationController(rootViewController: exLoginController)
        
         let tabBarController = UITabBarController()

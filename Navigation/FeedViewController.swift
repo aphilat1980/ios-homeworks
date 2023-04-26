@@ -2,30 +2,23 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-    //let post = Post(title: "Пост 1")
-
-    /*private lazy var button1: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 8
-        button.setTitle("Перейти на пост - кнопка 1", for: .normal)
-        button.addTarget(self, action: #selector(buttonPressed()), for: .touchUpInside)
-        return button
-        }()*/
+    let feedViewModel: FeedViewModel
+    
+    init(feedViewModel: FeedViewModel) {
+        self.feedViewModel = feedViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private lazy var button1: CustomButton = {
           let button = CustomButton(title: "Перейти на пост - кнопка 1", radius: 8, backColor: .systemBlue)
           button.completionHandler = {self.buttonPressed()}
           return button
     }()
     
-    /*private lazy var button2: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 8
-        button.setTitle("Перейти на пост - кнопка 2", for: .normal)
-        button.addTarget(self, action: #selector(buttonPressed()), for: .touchUpInside)
-        return button
-        }()*/
     
     private lazy var button2: CustomButton = {
         let button = CustomButton(title: "Перейти на пост - кнопка 2", radius: 8, backColor: .systemBlue)
@@ -88,8 +81,36 @@ class FeedViewController: UIViewController {
         view.backgroundColor = .systemGray
         view.addSubview(stackView)
         setupConstraints()
+        bindViewModel()
         
+    }
+    
+    func bindViewModel () {
+            
+        feedViewModel.onStateDidChange = {[weak self] state in
+            guard let self = self else {
+                return
+            }
+            switch state {
+            case .initial:
+                self.view.backgroundColor = .systemGray
+                self.stackView.isHidden = false
+            case .success:
+                self.stackView.isHidden = false
+                self.label.textColor = .green
+            case .failure:
+                self.stackView.isHidden = false
+                self.label.textColor = .red
+            case .emptyField:
+                self.view.backgroundColor = .black
+                self.stackView.isHidden = true
+
+                let alert = UIAlertController(title: "Ошибка!!", message: "Введено пустое значение!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Вернуться", style: .default, handler: {action in self.feedViewModel.state = .initial }))
+                self.present(alert, animated: true)
+            }
         }
+    }
     
     private func setupConstraints () {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
@@ -101,18 +122,12 @@ class FeedViewController: UIViewController {
     
     @objc func buttonPressed() {
         let postViewController = PostViewController()
-        //postViewController.titlePost = post.title
         navigationController?.pushViewController(postViewController, animated: true)
     }
     
     @objc func check() {
-        if textField.text == "" {
-            let alert = UIAlertController(title: "Ошибка!!", message: "Введено пустое значение!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Вернуться", style: .default, handler: {action in }))
-            present(alert, animated: true)
-        } else {
             label.text = textField.text
-            FeedModel().check(word: textField.text!) ? (self.label.textColor = .green) : (self.label.textColor = .red)
-        }
+            feedViewModel.check(secretWord: textField.text!)
     }
+    
 }
