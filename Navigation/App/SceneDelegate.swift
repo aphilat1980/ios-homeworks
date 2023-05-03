@@ -3,17 +3,30 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var appCoordinator: AppCoordinator?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let scene = (scene as? UIWindowScene) else { return }
         let window = UIWindow (windowScene: scene)
-        //создаем экземпляр LoginViewController
-        let exLoginController = LogInViewController()
+        
+        let factory = AppFactory(feedModel: FeedModel())
+        let appCoordinator = AppCoordinator(factory: factory)
+
+        self.window = window
+        self.appCoordinator = appCoordinator
+
+        window.rootViewController = appCoordinator.start()
+        window.makeKeyAndVisible()
+        
+        //РЕДАКЦИЯ ДО ВЫПОЛНЕНИЯ ТЕКУЩЕГО ЗАДАНИЯ
+        /*let exLoginController = LogInViewController()
+        
         let feedModel = FeedModel()
         let feedViewModel = FeedViewModel(feedModel: feedModel)
         let feedVC = FeedViewController(feedViewModel: feedViewModel)
+        
         let feedViewController = UINavigationController(rootViewController: feedVC)
         let logInViewController = UINavigationController(rootViewController: exLoginController)
        
@@ -32,7 +45,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
         
-        self.window = window
+        self.window = window*/
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -66,3 +79,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+/*class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    var window: UIWindow?
+    var appCoordinator: AppCoordinator?
+
+    func scene(_ scene: UIScene,
+               willConnectTo session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
+        guard let scene = scene as? UIWindowScene else {
+            return
+        }
+
+        let factory = AppFactory(networkService: NetworkService())
+        let appCoordinator = AppCoordinator(factory: factory)
+
+        self.window = UIWindow(windowScene: scene)
+        self.appCoordinator = appCoordinator
+
+        window?.rootViewController = appCoordinator.start()
+        window?.makeKeyAndVisible()
+    }
+}*/

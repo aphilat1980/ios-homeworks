@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FeedViewModel {
+class FeedViewModel:ViewModelProtocol {
     
     enum State {
         case initial //начальное состояние при загрузке
