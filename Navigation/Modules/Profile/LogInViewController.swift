@@ -1,10 +1,14 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, Coordinating {
+    
+    weak var coordinator: ModuleCoordinatable?
+    
 
     public var loginDelegate: LoginViewControllerDelegate?
     
+    //weak var coordinator: LoginCoordinator?
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -81,22 +85,6 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
-    /*private lazy var logInButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setBackgroundImage(UIImage (named: "buttonPixel"), for:.normal)
-        let image = button.currentBackgroundImage
-        button.setBackgroundImage (image?.image(alpha: 0.8), for: .highlighted)
-        button.setBackgroundImage (image?.image(alpha: 0.8), for: .selected)
-        button.setBackgroundImage (image?.image(alpha: 0.8), for: .disabled)
-        button.layer.cornerRadius = 10
-        button.setTitle("Log In", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(buttonPressed()), for: .touchUpInside)
-        button.clipsToBounds = true
-        return button
-    }()*/
-    
     private lazy var logInButton: CustomButton = {
         let button = CustomButton(title: "Log In", radius: 10, backColor: .systemBlue)
         button.setBackgroundImage(UIImage (named: "buttonPixel"), for:.normal)
@@ -172,8 +160,9 @@ class LogInViewController: UIViewController {
             #endif
             
             if let user = service.userChecking(userLogin: phoneTextField.text!) {
-                let profileViewController = ProfileViewController(user: user)
-                navigationController?.pushViewController(profileViewController, animated: true)
+                
+                (coordinator as? LoginCoordinator)?.eventOccurred(event: .loginButtonTapped(user))
+                
             } else {
                 let alert = UIAlertController(title: "Ошибка входа", message: "Пароль и логин верные, но профиль пользователя более недоступен", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Вернуться", style: .default, handler: {action in }))

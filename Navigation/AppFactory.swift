@@ -16,12 +16,13 @@ final class AppFactory {
 
     func makeModule(ofType moduleType: Module.ModuleType) -> Module {
         switch moduleType {
+        
         case .feed:
             let viewModel = FeedViewModel(feedModel: feedModel)
             let view = UINavigationController(rootViewController: FeedViewController(feedViewModel: viewModel))
             return Module(moduleType: moduleType, viewModel: viewModel, view: view)
+        
         case .login:
-            //let viewModel = nil
             let loginVC = LogInViewController()
             loginVC.loginDelegate = MyLoginFactory().makeLoginInspector()
             let view = UINavigationController(rootViewController: loginVC)

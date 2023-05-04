@@ -1,7 +1,9 @@
 import StorageService
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, Coordinating {
+    
+    weak var coordinator: ModuleCoordinatable?
     
     convenience init (user: User){
         self.init()
@@ -226,8 +228,10 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            let photosViewController = PhotosViewController()
-            navigationController?.pushViewController(photosViewController, animated: true)
+            (coordinator as? LoginCoordinator)?.eventOccurred(event: .photosTapped)
+            
+            //let photosViewController = PhotosViewController()
+            //navigationController?.pushViewController(photosViewController, animated: true)
         }
     }
 }

@@ -2,14 +2,6 @@ import UIKit
 
 class InfoViewController: UIViewController {
     
-    /*private lazy var button: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 8
-        button.setTitle("Вызвать алерт", for: .normal)
-        return button
-        }()*/
     
     private lazy var button: CustomButton = {
         let button = CustomButton(title: "Вызвать алерт", radius: 8, backColor: .systemBlue)
@@ -35,7 +27,7 @@ class InfoViewController: UIViewController {
                     safeAreaLayoutGuide.centerYAnchor),
                     button.heightAnchor.constraint(equalToConstant: 44.0)
                 ])
-        //button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+      
     }
    
     @objc func buttonPressed() {

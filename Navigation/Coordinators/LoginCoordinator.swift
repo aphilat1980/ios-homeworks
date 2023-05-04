@@ -9,6 +9,13 @@ import Foundation
 import UIKit
 
 final class LoginCoordinator: ModuleCoordinatable {
+    
+    enum Event {
+        case loginButtonTapped (User)
+        case photosTapped
+    }
+    
+    
     let moduleType: Module.ModuleType
 
     private let factory: AppFactory
@@ -25,13 +32,23 @@ final class LoginCoordinator: ModuleCoordinatable {
         let module = factory.makeModule(ofType: moduleType)
         let viewController = module.view
         viewController.tabBarItem = moduleType.tabBarItem
-        //(module.viewModel as? ListViewModel)?.coordinator = self
+        ((module.view as? UINavigationController)?.viewControllers[0] as? LogInViewController)?.coordinator = self
         self.module = module
         return viewController
     }
 
-    /*func pushBookViewController(forBook book: Book) {
-        let viewControllerToPush = BookViewController(book: book)
-        (module?.view as? UINavigationController)?.pushViewController(viewControllerToPush, animated: true)
-    }*/
+    func eventOccurred (event: Event ) {
+        switch event {
+        
+        case let .loginButtonTapped(user):
+            let viewControllerToPush: ProfileViewController & Coordinating = ProfileViewController(user: user)
+            viewControllerToPush.coordinator = self
+            (module?.view as? UINavigationController)?.pushViewController(viewControllerToPush, animated: true)
+        
+        case .photosTapped:
+            let photosViewController = PhotosViewController()
+            (module?.view as? UINavigationController)?.pushViewController(photosViewController, animated: true)
+        }
+    }
+    
 }

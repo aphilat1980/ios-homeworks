@@ -23,3 +23,8 @@ extension Coordinatable {
     func addChildCoordinator(_ coordinator: Coordinatable) {}
     func removeChildCoordinator(_ coordinator: Coordinatable) {}
 }
+
+protocol Coordinating: AnyObject {
+    
+    var coordinator: ModuleCoordinatable? {get set}
+}

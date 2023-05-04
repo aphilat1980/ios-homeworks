@@ -121,13 +121,15 @@ class FeedViewController: UIViewController {
         }
     
     @objc func buttonPressed() {
-        let postViewController = PostViewController()
-        navigationController?.pushViewController(postViewController, animated: true)
+        //let postViewController = PostViewController()
+        //navigationController?.pushViewController(postViewController, animated: true)
+        feedViewModel.updateState(viewInput: .postButtonPTapped)
     }
     
     @objc func check() {
-            label.text = textField.text
-            feedViewModel.check(secretWord: textField.text!)
+        label.text = textField.text
+        feedViewModel.updateState(viewInput: .checkButtonTapped(textField.text!))
+            //feedViewModel.check(secretWord: textField.text!)
     }
     
 }
