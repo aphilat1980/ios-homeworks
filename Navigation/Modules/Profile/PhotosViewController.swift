@@ -5,9 +5,12 @@ import UIKit
 
 class PhotosViewController: UIViewController {
     
-    //fileprivate lazy var photosData = PhotoImages.make()
-    lazy var photosData: [UIImage] = []
+    var photosData1:[UIImage] = []
+    
+    fileprivate lazy var photosData = PhotoImages.makeImageArray()
+    //lazy var photosData: [UIImage] = []
    
+    let imageProcessor = ImageProcessor()
     
     let facade = ImagePublisherFacade()
     
@@ -48,7 +51,15 @@ class PhotosViewController: UIViewController {
         /*вариант вызова метода с изображениями из библиотеки iOSlntPackage
         facade.addImagesWithTimer(time: 0.5, repeat: 20)*/
         //вариант вызова метода со своими изображениями
-        facade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: PhotoImages.makeImageArray())
+        //facade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: PhotoImages.makeImageArray())
+        imageProcessor.processImagesOnThread(sourceImages: photosData, filter: .chrome, qos:.default, completion: { sourceImages in
+            for i in sourceImages {
+                self.photosData1.append(UIImage(cgImage: i!))
+                //print (self.photosData1)
+            }
+        })
+        print (photosData1)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -74,13 +85,13 @@ class PhotosViewController: UIViewController {
 extension PhotosViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        photosData.count
+        photosData1.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.id, for: indexPath) as! PhotosCollectionViewCell
         
-        let profile = photosData[indexPath.row]
+        let profile = photosData1[indexPath.row]
         cell.setup(with: profile)
         return cell
     }
