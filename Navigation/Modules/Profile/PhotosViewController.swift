@@ -5,7 +5,7 @@ import UIKit
 
 class PhotosViewController: UIViewController {
     
-    var photosData1:[UIImage] = []
+    var photosDataProccessed:[UIImage] = []
     
     fileprivate lazy var photosData = PhotoImages.makeImageArray()
     //lazy var photosData: [UIImage] = []
@@ -30,6 +30,7 @@ class PhotosViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -40,6 +41,7 @@ class PhotosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .systemGray6
         title = "Photo Gallery"
         navigationController?.navigationBar.backgroundColor = .systemGray6
@@ -47,26 +49,26 @@ class PhotosViewController: UIViewController {
         setupConstraints()
         collectionView.dataSource = self
         collectionView.delegate = self
-        facade.subscribe(self)
+        //facade.subscribe(self)
         /*вариант вызова метода с изображениями из библиотеки iOSlntPackage
         facade.addImagesWithTimer(time: 0.5, repeat: 20)*/
         //вариант вызова метода со своими изображениями
         //facade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: PhotoImages.makeImageArray())
-        imageProcessor.processImagesOnThread(sourceImages: photosData, filter: .chrome, qos:.default, completion: { sourceImages in
-            for i in sourceImages {
-                self.photosData1.append(UIImage(cgImage: i!))
-                //print (self.photosData1)
-            }
-        })
-        print (photosData1)
+        
+        let clock = ContinuousClock()
+        let result = clock.measure {
+            imageProcess(qos: .userInteractive, filter: .gaussianBlur(radius: 20))
+        }
+        print ("result is \(result)")
+        
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        facade.removeSubscription(for: self)
-        facade.rechargeImageLibrary()
+        //facade.removeSubscription(for: self)
+        //facade.rechargeImageLibrary()
     }
     
     private func setupConstraints() {
@@ -80,18 +82,39 @@ class PhotosViewController: UIViewController {
         ])
     }
     
+    func imageProcess (qos: QualityOfService, filter: ColorFilter) {
+        
+            imageProcessor.processImagesOnThread(sourceImages: photosData, filter: filter, qos: qos, completion: { sourceImages in
+                //let result = ContinuousClock().measure {
+                    for i in sourceImages {
+                        self.photosDataProccessed.append(UIImage(cgImage: i!))
+                    }
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                //}
+                //    print ("result is \(result)")
+                
+            })
+            
+            
+        }
+        
+
+    
+    
 }
 
 extension PhotosViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        photosData1.count
+        photosDataProccessed.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.id, for: indexPath) as! PhotosCollectionViewCell
         
-        let profile = photosData1[indexPath.row]
+        let profile = photosDataProccessed[indexPath.row]
         cell.setup(with: profile)
         return cell
     }
@@ -119,9 +142,10 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 
 }
 
-extension PhotosViewController: ImageLibrarySubscriber {
+/*extension PhotosViewController:  ImageLibrarySubscriber {
     func receive(images: [UIImage]) {
         self.photosData = images
         self.collectionView.reloadData()
     }
-}
+    
+}*/

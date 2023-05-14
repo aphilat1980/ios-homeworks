@@ -40,6 +40,7 @@ public extension PhotoImages {
         var array: [UIImage] = []
         for i in 1...20 {
             array.append(UIImage(named: "\(i)") ?? UIImage())
+            //array.append(UIImage(named: "\(i)") ?? UIImage())
         }
         return array
     }
