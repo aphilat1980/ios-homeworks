@@ -1,4 +1,4 @@
-
+import CoreFoundation
 import iOSIntPackage
 import StorageService
 import UIKit
@@ -55,12 +55,7 @@ class PhotosViewController: UIViewController {
         //вариант вызова метода со своими изображениями
         //facade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: PhotoImages.makeImageArray())
         
-        let clock = ContinuousClock()
-        let result = clock.measure {
-            imageProcess(qos: .userInteractive, filter: .gaussianBlur(radius: 20))
-        }
-        print ("result is \(result)")
-        
+        imageProcess(qos: .userInteractive, filter: .gaussianBlur(radius: 20))
         
     }
     
@@ -84,25 +79,18 @@ class PhotosViewController: UIViewController {
     
     func imageProcess (qos: QualityOfService, filter: ColorFilter) {
         
-            imageProcessor.processImagesOnThread(sourceImages: photosData, filter: filter, qos: qos, completion: { sourceImages in
-                //let result = ContinuousClock().measure {
-                    for i in sourceImages {
-                        self.photosDataProccessed.append(UIImage(cgImage: i!))
-                    }
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
-                //}
-                //    print ("result is \(result)")
-                
-            })
-            
-            
-        }
+        let start = CFAbsoluteTimeGetCurrent()
+        imageProcessor.processImagesOnThread(sourceImages: photosData, filter: filter, qos: qos, completion: { sourceImages in
+                for i in sourceImages {
+                    self.photosDataProccessed.append(UIImage(cgImage: i!))
+                }
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    print ("duration is \(CFAbsoluteTimeGetCurrent() - start) seconds")
+                }
+         })
+    }
         
-
-    
-    
 }
 
 extension PhotosViewController: UICollectionViewDataSource {
