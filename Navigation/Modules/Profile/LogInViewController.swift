@@ -98,6 +98,22 @@ class LogInViewController: UIViewController, Coordinating {
         return button
   }()
     
+    private lazy var passwordButton: CustomButton = {
+        let button = CustomButton(title: "Подобрать пароль", radius: 10, backColor: .systemBlue)
+        button.setBackgroundImage(UIImage (named: "buttonPixel"), for:.normal)
+        let image = button.currentBackgroundImage
+        button.setTitleColor(.white, for: .normal)
+        button.clipsToBounds = true
+        button.completionHandler = {self.buttonPasswordPressed()}
+        return button
+  }()
+    
+    public lazy var indicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    } ()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,6 +124,8 @@ class LogInViewController: UIViewController, Coordinating {
         contentView.addSubview(avatarImageView)
         contentView.addSubview(stackView)
         contentView.addSubview(logInButton)
+        contentView.addSubview(passwordButton)
+        contentView.addSubview(indicator)
         setupConstraints()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
@@ -145,7 +163,17 @@ class LogInViewController: UIViewController, Coordinating {
             logInButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+            logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            
+            passwordButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            passwordButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16),
+            passwordButton.heightAnchor.constraint(equalToConstant: 50),
+            passwordButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+           passwordButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            
+            indicator.centerXAnchor.constraint(equalTo: passwordTextField.centerXAnchor),
+            indicator.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor)
+            
             ])
         }
     
@@ -176,6 +204,33 @@ class LogInViewController: UIViewController, Coordinating {
             
         
         }
+    }
+    
+    @objc func buttonPasswordPressed() {
+        
+        let letters = String().letters + String().digits
+        var randomPassword = ""
+        for _ in 1...3 {
+            let randomLetter = letters.randomElement()!
+            randomPassword += String(randomLetter)
+        }
+        print ("random password is \(randomPassword)")
+        indicator.startAnimating()
+        
+        let queue = DispatchQueue(label: "password", qos: .userInitiated)
+        
+        queue.async {
+            let bruteForce = BrutForce()
+            print ("starting bruteForce")
+            bruteForce.bruteForce(passwordToUnlock: randomPassword)
+            print ("stopping bruteForce")
+            DispatchQueue.main.async {
+                self.indicator.stopAnimating()
+                self.passwordTextField.isSecureTextEntry = false
+                self.passwordTextField.text = randomPassword
+            }
+        }
+        
     }
     
     @objc func keyboardWillShow(notification:NSNotification) {

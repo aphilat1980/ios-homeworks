@@ -14,6 +14,7 @@
 		1788A3CA2A0262F1005D240F /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3C92A0262F1005D240F /* FeedCoordinator.swift */; };
 		1788A3CC2A026386005D240F /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3CB2A026386005D240F /* AppFactory.swift */; };
 		1788A3CE2A026859005D240F /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3CD2A026859005D240F /* LoginCoordinator.swift */; };
+		1788A3F82A13B57C005D240F /* BrutForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3F72A13B57C005D240F /* BrutForce.swift */; };
 		17A17CDE29E134E600E56F33 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 17A17CDD29E134E600E56F33 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		17A17CE129E134E600E56F33 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A17CDB29E134E600E56F33 /* StorageService.framework */; };
 		17A17CE229E134E600E56F33 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 17A17CDB29E134E600E56F33 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -72,6 +73,7 @@
 		1788A3C92A0262F1005D240F /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		1788A3CB2A026386005D240F /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
 		1788A3CD2A026859005D240F /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		1788A3F72A13B57C005D240F /* BrutForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BrutForce.swift; path = StorageService/BrutForce.swift; sourceTree = SOURCE_ROOT; };
 		17A17CDB29E134E600E56F33 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A17CDD29E134E600E56F33 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		17A17CED29E9921200E56F33 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		17A223BD299A78A700DF17C7 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				1788A3F72A13B57C005D240F /* BrutForce.swift */,
 				1788A3CF2A027028005D240F /* App */,
 				17A17CED29E9921200E56F33 /* User.swift */,
 				17A17CEF29EBC65D00E56F33 /* Checker.swift */,
@@ -348,6 +351,7 @@
 				17A17CFA29F976C400E56F33 /* FeedModel.swift in Sources */,
 				17A223F9299BBB5200DF17C7 /* PostViewController.swift in Sources */,
 				1788A3CE2A026859005D240F /* LoginCoordinator.swift in Sources */,
+				1788A3F82A13B57C005D240F /* BrutForce.swift in Sources */,
 				1788A3C82A02624D005D240F /* AppCoordinator.swift in Sources */,
 				17D32F0A29B4739200C4A023 /* ProfileTableViewCell.swift in Sources */,
 				17A223BF299A78A700DF17C7 /* AppDelegate.swift in Sources */,
