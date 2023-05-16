@@ -55,7 +55,7 @@ class PhotosViewController: UIViewController {
         //вариант вызова метода со своими изображениями
         //facade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: PhotoImages.makeImageArray())
         
-        imageProcess(qos: .userInteractive, filter: .gaussianBlur(radius: 20))
+        imageProcess(qos: .default, filter: .colorInvert)
         
     }
     
