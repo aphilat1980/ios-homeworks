@@ -14,6 +14,7 @@
 		1788A3CA2A0262F1005D240F /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3C92A0262F1005D240F /* FeedCoordinator.swift */; };
 		1788A3CC2A026386005D240F /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3CB2A026386005D240F /* AppFactory.swift */; };
 		1788A3CE2A026859005D240F /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3CD2A026859005D240F /* LoginCoordinator.swift */; };
+		1788A41C2A27A6D8005D240F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A41B2A27A6D8005D240F /* NetworkManager.swift */; };
 		17A17CDE29E134E600E56F33 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 17A17CDD29E134E600E56F33 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		17A17CE129E134E600E56F33 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A17CDB29E134E600E56F33 /* StorageService.framework */; };
 		17A17CE229E134E600E56F33 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 17A17CDB29E134E600E56F33 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -72,6 +73,7 @@
 		1788A3C92A0262F1005D240F /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		1788A3CB2A026386005D240F /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
 		1788A3CD2A026859005D240F /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		1788A41B2A27A6D8005D240F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		17A17CDB29E134E600E56F33 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A17CDD29E134E600E56F33 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		17A17CED29E9921200E56F33 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				17A223C7299A78A800DF17C7 /* Assets.xcassets */,
 				17A223C9299A78A800DF17C7 /* LaunchScreen.storyboard */,
 				17A223CC299A78A800DF17C7 /* Info.plist */,
+				1788A41B2A27A6D8005D240F /* NetworkManager.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				1788A3CC2A026386005D240F /* AppFactory.swift in Sources */,
 				17D32F0629B2512200C4A023 /* PhotosCollectionViewCell.swift in Sources */,
 				1788A3C42A022A00005D240F /* Module.swift in Sources */,
+				1788A41C2A27A6D8005D240F /* NetworkManager.swift in Sources */,
 				17A17CEE29E9921200E56F33 /* User.swift in Sources */,
 				17A223F7299AACCD00DF17C7 /* ProfileViewController.swift in Sources */,
 				17A223F5299AABFD00DF17C7 /* FeedViewController.swift in Sources */,
