@@ -14,8 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let factory = AppFactory(feedModel: FeedModel())
         let appCoordinator = AppCoordinator(factory: factory)
 
-        let appconfiguration = AppConfiguration.allCases.randomElement()!
-        NetworkManager().request(for: appconfiguration)
+        //let appconfiguration = AppConfiguration.allCases.randomElement()!
+        //NetworkManager().request(for: appconfiguration)
         
         self.window = window
         self.appCoordinator = appCoordinator

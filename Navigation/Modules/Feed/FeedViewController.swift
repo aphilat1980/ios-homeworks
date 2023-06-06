@@ -93,9 +93,13 @@ class FeedViewController: UIViewController {
         view.backgroundColor = .systemGray
         view.addSubview(stackView)
         setupConstraints()
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        //timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
         bindViewModel()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
     }
     
     func bindViewModel () {
@@ -156,6 +160,7 @@ class FeedViewController: UIViewController {
     @objc func buttonPressed() {
         //let postViewController = PostViewController()
         //navigationController?.pushViewController(postViewController, animated: true)
+        self.timer?.invalidate()
         feedViewModel.updateState(viewInput: .postButtonPTapped)
     }
     
