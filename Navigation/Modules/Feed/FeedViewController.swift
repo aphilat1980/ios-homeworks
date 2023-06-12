@@ -142,9 +142,9 @@ class FeedViewController: UIViewController {
         else {
             textField.text = ""
             self.timer?.invalidate()
-            let alert = UIAlertController(title: "Истекло время ввода ключевого слова", message: "Введите за 30 сек слово заново", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Вернуться", style: .default, handler: {action in self.feedViewModel.state = .initial }))
-            self.present(alert, animated: true)
+            //let alert = UIAlertController(title: "Истекло время ввода ключевого слова", message: "Введите за 30 сек слово заново", preferredStyle: .alert)
+            //alert.addAction(UIAlertAction(title: "Вернуться", style: .default, handler: {action in self.feedViewModel.state = .initial }))
+            //self.present(alert, animated: true)
             //runCount = 31
         }
     }

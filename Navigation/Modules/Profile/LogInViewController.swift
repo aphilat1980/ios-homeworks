@@ -1,11 +1,11 @@
 
 import UIKit
+import FirebaseAuth
 
 class LogInViewController: UIViewController, Coordinating {
     
     weak var coordinator: ModuleCoordinatable?
     
-
     public var loginDelegate: LoginViewControllerDelegate?
     
     //weak var coordinator: LoginCoordinator?
@@ -150,32 +150,44 @@ class LogInViewController: UIViewController, Coordinating {
         }
     
     @objc func buttonPressed() {
-       
-        if loginDelegate!.check(checker: Checker.shared, user: phoneTextField.text!, password: passwordTextField.text!) {
-            
-            #if DEBUG
-            let service = TestUserService()
-            #else
-            let service = CurrentUserService()
-            #endif
-            
-            if let user = service.userChecking(userLogin: phoneTextField.text!) {
-                
-                (coordinator as? LoginCoordinator)?.eventOccurred(event: .loginButtonTapped(user))
-                
-            } else {
-                let alert = UIAlertController(title: "Ошибка входа", message: "Пароль и логин верные, но профиль пользователя более недоступен", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Вернуться", style: .default, handler: {action in }))
-                present(alert, animated: true)
-            }
-        } else {
-            
-            let alert = UIAlertController(title: "Ошибка входа", message: "Пароль и логин некорректные", preferredStyle: .alert)
-            alert.addAction (UIAlertAction(title: "Вернуться", style: .default))
-            present(alert, animated: true)
-            
         
-        }
+        loginDelegate!.checkCredentials(email: phoneTextField.text!, password: passwordTextField.text!) { [weak self] authResult in
+            
+            switch authResult {
+            case .success:
+                let user = User(userLogin: self!.phoneTextField.text!, userFullName: "Александр", userStatus: "Привет", userAvatar: UIImage(named: "avatar")!)
+                (self!.coordinator as? LoginCoordinator)?.eventOccurred(event: .loginButtonTapped(user))
+            
+            case .noUser:
+                
+                let alert = UIAlertController(title: "Ошибка входа", message: "Необходимо зарегистрировать пользователя", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Зарегистрировать нового пользователя", style: .default, handler: { action in
+                        
+                        self!.loginDelegate!.signUp(email: self!.phoneTextField.text!, password: self!.passwordTextField.text!) { [weak self] signUpResult in
+                            
+                            switch signUpResult {
+                            case .success:
+                                let user = User(userLogin: self!.phoneTextField.text!, userFullName: "\(self!.phoneTextField.text!)", userStatus: "Привет", userAvatar: UIImage(named: "avatar")!)
+                                    (self!.coordinator as? LoginCoordinator)?.eventOccurred(event: .loginButtonTapped(user))
+                                
+                            case .failure(let error):
+                                let alert = UIAlertController(title: "Ошибка входа. Пользователь не зарегистрирован", message: error, preferredStyle: .alert)
+                                alert.addAction (UIAlertAction(title: "Вернуться", style: .default))
+                                self!.present(alert, animated: true)
+                            }
+                        }
+                    }))
+                    alert.addAction (UIAlertAction(title: "Вернуться", style: .default))
+                    self!.present(alert, animated: true)
+            
+                
+            case .failure(let error):
+                let alert = UIAlertController(title: "Ошибка входа", message: error, preferredStyle: .alert)
+                alert.addAction (UIAlertAction(title: "Вернуться", style: .default))
+                self!.present(alert, animated: true)
+            }
+    }
+        
     }
     
     @objc func keyboardWillShow(notification:NSNotification) {
