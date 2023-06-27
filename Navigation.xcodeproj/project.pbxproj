@@ -18,6 +18,9 @@
 		1788A41E2A31FFF8005D240F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1788A41D2A31FFF8005D240F /* GoogleService-Info.plist */; };
 		1788A4222A320879005D240F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1788A4212A320879005D240F /* FirebaseAnalytics */; };
 		1788A4242A320879005D240F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1788A4232A320879005D240F /* FirebaseAuth */; };
+		178A51F42A4B1D05007E9229 /* SavedPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178A51F32A4B1D05007E9229 /* SavedPostViewController.swift */; };
+		178A521A2A4B20A3007E9229 /* Navigation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 178A52182A4B20A3007E9229 /* Navigation.xcdatamodeld */; };
+		178A521C2A4B2562007E9229 /* PostDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178A521B2A4B2562007E9229 /* PostDataManager.swift */; };
 		17A17CDE29E134E600E56F33 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 17A17CDD29E134E600E56F33 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		17A17CE129E134E600E56F33 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A17CDB29E134E600E56F33 /* StorageService.framework */; };
 		17A17CE229E134E600E56F33 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 17A17CDB29E134E600E56F33 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -79,6 +82,9 @@
 		1788A41B2A27A6D8005D240F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1788A41D2A31FFF8005D240F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1788A41F2A3200C0005D240F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		178A51F32A4B1D05007E9229 /* SavedPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPostViewController.swift; sourceTree = "<group>"; };
+		178A52192A4B20A3007E9229 /* Navigation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Navigation.xcdatamodel; sourceTree = "<group>"; };
+		178A521B2A4B2562007E9229 /* PostDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDataManager.swift; sourceTree = "<group>"; };
 		17A17CDB29E134E600E56F33 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A17CDD29E134E600E56F33 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		17A17CED29E9921200E56F33 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -175,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				1788A3C32A022A00005D240F /* Module.swift */,
+				178A51F32A4B1D05007E9229 /* SavedPostViewController.swift */,
 				1788A3D12A027112005D240F /* Feed */,
 				1769621529A51F9A009A9981 /* Profile */,
 			);
@@ -212,6 +219,8 @@
 		17A223BD299A78A700DF17C7 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				178A52182A4B20A3007E9229 /* Navigation.xcdatamodeld */,
+				178A521B2A4B2562007E9229 /* PostDataManager.swift */,
 				1788A3CF2A027028005D240F /* App */,
 				17A17CED29E9921200E56F33 /* User.swift */,
 				17A17CEF29EBC65D00E56F33 /* Checker.swift */,
@@ -373,9 +382,12 @@
 				1788A41C2A27A6D8005D240F /* NetworkManager.swift in Sources */,
 				17A17CEE29E9921200E56F33 /* User.swift in Sources */,
 				17A223F7299AACCD00DF17C7 /* ProfileViewController.swift in Sources */,
+				178A521A2A4B20A3007E9229 /* Navigation.xcdatamodeld in Sources */,
+				178A521C2A4B2562007E9229 /* PostDataManager.swift in Sources */,
 				17A223F5299AABFD00DF17C7 /* FeedViewController.swift in Sources */,
 				17D32F0829B3204400C4A023 /* PhotosTableViewCell.swift in Sources */,
 				170FF4C9299D154300EF43C8 /* InfoViewController.swift in Sources */,
+				178A51F42A4B1D05007E9229 /* SavedPostViewController.swift in Sources */,
 				17D32F0429B24F9200C4A023 /* PhotosViewController.swift in Sources */,
 				17D32F0029AB739800C4A023 /* LogInViewController.swift in Sources */,
 				1788A3CA2A0262F1005D240F /* FeedCoordinator.swift in Sources */,
@@ -703,6 +715,19 @@
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		178A52182A4B20A3007E9229 /* Navigation.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				178A52192A4B20A3007E9229 /* Navigation.xcdatamodel */,
+			);
+			currentVersion = 178A52192A4B20A3007E9229 /* Navigation.xcdatamodel */;
+			path = Navigation.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 17A223B3299A78A700DF17C7 /* Project object */;
 }

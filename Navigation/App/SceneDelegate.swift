@@ -77,29 +77,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 
 
 }
 
-/*class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    var window: UIWindow?
-    var appCoordinator: AppCoordinator?
 
-    func scene(_ scene: UIScene,
-               willConnectTo session: UISceneSession,
-               options connectionOptions: UIScene.ConnectionOptions) {
-        guard let scene = scene as? UIWindowScene else {
-            return
-        }
-
-        let factory = AppFactory(networkService: NetworkService())
-        let appCoordinator = AppCoordinator(factory: factory)
-
-        self.window = UIWindow(windowScene: scene)
-        self.appCoordinator = appCoordinator
-
-        window?.rootViewController = appCoordinator.start()
-        window?.makeKeyAndVisible()
-    }
-}*/

@@ -4,6 +4,8 @@ import StorageService
 
 class PostTableViewCell: UITableViewCell {
 
+    var completionHandler: (() -> Void)?
+    
     static let id = "customTableView_id"
     
     var post : Post? {
@@ -16,7 +18,7 @@ class PostTableViewCell: UITableViewCell {
      }
      }
     
-    private lazy var author: UILabel = {
+    lazy var author: UILabel = {
         let label = UILabel ()
         label.translatesAutoresizingMaskIntoConstraints = false
         //label.text = Post.author
@@ -26,7 +28,7 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var image: UIImageView = {
+    lazy var image: UIImageView = {
         let myImage  = UIImageView ()
         myImage.translatesAutoresizingMaskIntoConstraints = false
         myImage.contentMode = .scaleAspectFit
@@ -35,7 +37,7 @@ class PostTableViewCell: UITableViewCell {
         return myImage
     }()
     
-    private lazy var my_description: UILabel = {
+    lazy var my_description: UILabel = {
         let label = UILabel ()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(14)
@@ -45,14 +47,14 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var likes: UILabel = {
+    lazy var likes: UILabel = {
         let label = UILabel ()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(16)
         return label
     }()
     
-    private lazy var views: UILabel = {
+    lazy var views: UILabel = {
         let label = UILabel ()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(16)
@@ -61,6 +63,9 @@ class PostTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        let tapView = UITapGestureRecognizer( target: self, action: #selector(didTapView))
+        tapView.numberOfTapsRequired = 2
+        contentView.addGestureRecognizer(tapView)
         contentView.backgroundColor = .white
         contentView.addSubview(author)
         contentView.addSubview(image)
@@ -90,6 +95,10 @@ class PostTableViewCell: UITableViewCell {
            views.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
            views.topAnchor.constraint(equalTo: my_description.bottomAnchor, constant: 16)
         ])
+    }
+    
+    @objc private func didTapView () {
+        completionHandler?()
     }
 
 }

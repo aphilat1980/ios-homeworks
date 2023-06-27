@@ -10,6 +10,8 @@ class ProfileViewController: UIViewController, Coordinating {
         self.currentUser = user
     }
     
+    var postDataManager = PostDataManager()
+    
     var currentUser: User?
     
     fileprivate let data = Post.make()
@@ -214,6 +216,14 @@ extension ProfileViewController: UITableViewDataSource {
             }
             let currentLastItem = data[indexPath.row]
             cell.post = currentLastItem
+            cell.completionHandler = {
+                self.postDataManager.createSavedPost(author: currentLastItem.author, myDescription: currentLastItem.my_description, image: currentLastItem.image, likes: currentLastItem.likes, views: currentLastItem.views)
+                let alert = UIAlertController (title: "Post Saved Success", message: "Check Saved Posts", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .cancel)
+                alert.addAction(action)
+                self.present(alert, animated: true)
+                
+            }
             return cell
         
         default: break

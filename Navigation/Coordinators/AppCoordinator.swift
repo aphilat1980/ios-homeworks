@@ -19,14 +19,17 @@ final class AppCoordinator: Coordinatable {
     func start() -> UIViewController {
         let feedCoordinator = FeedCoordinator(moduleType: .feed, factory: factory)
         let loginCoordinator = LoginCoordinator(moduleType: .login, factory: factory)
+        let savedPostViewController = SavedPostViewController()
+        savedPostViewController.tabBarItem = UITabBarItem(title: "Saved Posts", image: UIImage(systemName: "square.and.arrow.down"), tag: 2)
 
+       
         /*let appTabBarController = AppTabBarController(viewControllers: [
             booksListCoordinator.start(),
             aboutCoordinator.start()
         ])*/
         let appTabBarController = UITabBarController()
         appTabBarController.tabBar.backgroundColor = .systemGray6
-        appTabBarController.viewControllers = [feedCoordinator.start(), loginCoordinator.start()]
+        appTabBarController.viewControllers = [feedCoordinator.start(), loginCoordinator.start(), UINavigationController(rootViewController: savedPostViewController)]
 
         addChildCoordinator(feedCoordinator)
         addChildCoordinator(loginCoordinator)
