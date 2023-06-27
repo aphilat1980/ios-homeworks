@@ -9,9 +9,10 @@ import Foundation
 import CoreData
 import UIKit
 
+class PostDataManager {
+
 private var context = (UIApplication.shared.delegate as? AppDelegate)!.persistentContainer.viewContext
 
-class PostDataManager {
     
     init () {
         fetchSavedPosts()
