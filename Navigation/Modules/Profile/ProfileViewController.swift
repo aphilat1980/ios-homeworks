@@ -75,6 +75,7 @@ class ProfileViewController: UIViewController, Coordinating {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        postDataManager.fetchSavedPosts()
     }
     
     
@@ -87,7 +88,27 @@ class ProfileViewController: UIViewController, Coordinating {
         #endif
         view.addSubview(tableView)
         tableView.addSubview(avView)
+        bindModel()
         setupConstraints()
+    }
+    
+    func bindModel () {
+        
+        postDataManager.postsUpdate = {
+            let alert = UIAlertController (title: "Post Saved Success", message: "Check Saved Posts", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .cancel)
+            alert.addAction(action)
+            self.present(alert, animated: true)
+        }
+        
+        postDataManager.postDublicate = {
+            let alert = UIAlertController (title: "Post Saved Error", message: "You Have Saved This Post Already", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .cancel)
+            alert.addAction(action)
+            self.present(alert, animated: true)
+            
+        }
+        
     }
     
     private func setupConstraints() {
@@ -216,13 +237,8 @@ extension ProfileViewController: UITableViewDataSource {
             }
             let currentLastItem = data[indexPath.row]
             cell.post = currentLastItem
-            cell.completionHandler = {
-                self.postDataManager.createSavedPost(author: currentLastItem.author, myDescription: currentLastItem.my_description, image: currentLastItem.image, likes: currentLastItem.likes, views: currentLastItem.views)
-                let alert = UIAlertController (title: "Post Saved Success", message: "Check Saved Posts", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .cancel)
-                alert.addAction(action)
-                self.present(alert, animated: true)
-                
+            cell.completionHandler = { [weak self] in
+                self?.postDataManager.createSavedPost(author: currentLastItem.author, myDescription: currentLastItem.my_description, image: currentLastItem.image, likes: currentLastItem.likes, views: currentLastItem.views)
             }
             return cell
         

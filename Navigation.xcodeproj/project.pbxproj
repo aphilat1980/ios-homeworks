@@ -134,7 +134,6 @@
 		1769621529A51F9A009A9981 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				17D32F0129AE584400C4A023 /* PostTableViewCell.swift */,
 				17A223F6299AACCD00DF17C7 /* ProfileViewController.swift */,
 				17D32F0729B3204400C4A023 /* PhotosTableViewCell.swift */,
 				17D32F0929B4739200C4A023 /* ProfileTableViewCell.swift */,
@@ -173,6 +172,7 @@
 				17A223F4299AABFD00DF17C7 /* FeedViewController.swift */,
 				17A17CF729F9536100E56F33 /* FeedViewModel.swift */,
 				17A17CF929F976C400E56F33 /* FeedModel.swift */,
+				17D32F0129AE584400C4A023 /* PostTableViewCell.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";

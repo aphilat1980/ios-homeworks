@@ -12,22 +12,12 @@ class SavedPostViewController: UIViewController {
     
     var postDataManager = PostDataManager()
     
-    var currentUser = User(userLogin: "aphilat", userFullName: "Test User", userStatus: "Test test test", userAvatar: UIImage(named: "avatar")!)
-    
-    
     private lazy var tableView: UITableView = {
-        let tableView = UITableView.init(
-            frame: .zero,
-            style: .plain
-        )
+        let tableView = UITableView.init(frame: .zero,style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.id)
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.id)
-        
         tableView.dataSource = self
         tableView.delegate = self
-        
         return tableView
     }()
     
@@ -36,10 +26,11 @@ class SavedPostViewController: UIViewController {
         tableView.reloadData()
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Сбросить", style: .plain, target: self, action: #selector(resetSearch(_:))), UIBarButtonItem(title: "Поиск", style: .plain, target: self, action: #selector(searchAuthor(_:)))]
+        
         view.backgroundColor = .green
         view.addSubview(tableView)
         setupConstraints()
@@ -55,64 +46,69 @@ class SavedPostViewController: UIViewController {
         ])
     }
     
+    @objc func searchAuthor(_ sender: UIButton) {
+        
+        let alert = UIAlertController (title: "Введите имя автора", message: nil, preferredStyle: .alert)
+        alert.addTextField()
+        let action = UIAlertAction(title: "Применить", style: .default, handler: {_ in
+            let author = alert.textFields![0].text!
+            self.postDataManager.searchPost(author: author) {
+                        self.tableView.reloadData()
+            }
+        })
+        alert.addAction(action)
+        self.present(alert, animated: true)
+        
+    }
+    
+    @objc func resetSearch(_ sender: UIButton) {
+        postDataManager.fetchSavedPosts()
+        self.tableView.reloadData()
+        
+    }
+    
 }
 
 extension SavedPostViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0: return 1
-        case 1: return postDataManager.savedPosts.count
-        default: break
-        }
-        return 0
+        return postDataManager.savedPosts.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch indexPath.section {
-        case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.id, for: indexPath) as? ProfileTableViewCell else {
-            fatalError("could not dequeueReusableCell")
-            }
-            cell.fullNameLabel.text = currentUser.userFullName
-            cell.statusLabel.text = currentUser.userStatus
-            cell.avatarImageView.image = currentUser.userAvatar
-            return cell
-            
-        case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.id, for: indexPath) as? PostTableViewCell else {
-            fatalError("could not dequeueReusableCell")
-            }
-            let currentLastItem = postDataManager.savedPosts[indexPath.row]
-            cell.author.text = currentLastItem.author
-            cell.image.image = UIImage(named: currentLastItem.image!)
-            cell.my_description.text = currentLastItem.myDescription
-            cell.likes.text = "Likes: \(currentLastItem.likes)"
-            cell.views.text = "Views: \(currentLastItem.views)"
-            
-            return cell
-        
-        default: break
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.id, for: indexPath) as? PostTableViewCell else {
+        fatalError("could not dequeueReusableCell")
         }
-     return UITableViewCell()
+        let currentLastItem = postDataManager.savedPosts[indexPath.row]
+        cell.author.text = currentLastItem.author
+        cell.image.image = UIImage(named: currentLastItem.image!)
+        cell.my_description.text = currentLastItem.myDescription
+        cell.likes.text = "Likes: \(currentLastItem.likes)"
+        cell.views.text = "Views: \(currentLastItem.views)"
+        return cell
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        true
-    }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                       trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        postDataManager.deletePost(index: indexPath.row)
-        //delegate.networkManager.deleteQuote(index: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .automatic)
+        
+        let delete = UIContextualAction(style: .destructive,
+                                        title: "Delete") { [weak self](action, view, completionHandler) in
+            self?.postDataManager.deletePost(index: indexPath.row)
+            tableView.reloadData()
+            completionHandler(true)
+        }
+        delete.backgroundColor = .systemRed
+        let configuration = UISwipeActionsConfiguration(actions: [delete])
+        return configuration
+        
     }
         
 }
