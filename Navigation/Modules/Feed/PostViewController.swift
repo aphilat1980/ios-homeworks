@@ -1,6 +1,9 @@
 import UIKit
 
-class PostViewController: UIViewController {
+class PostViewController: UIViewController, Coordinating {
+   
+    var coordinator: ModuleCoordinatable?
+    
 
     var titlePost = "Мой пост"
     
@@ -11,14 +14,13 @@ class PostViewController: UIViewController {
         view.backgroundColor = .systemOrange
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Info", style: .plain, target: self, action: #selector(buttonPressed(_:)))
+
 }
     
     @objc func buttonPressed(_ sender: UIButton) {
         
-        let infoViewController = InfoViewController()
-        infoViewController.modalTransitionStyle = .coverVertical
-        infoViewController.modalPresentationStyle = .pageSheet
-        present(infoViewController, animated: true)
+        (coordinator as? FeedCoordinator)?.eventOccurred(event: .infoButtonTapped)
+        
         }
 
 }
