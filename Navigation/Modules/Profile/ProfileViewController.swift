@@ -54,21 +54,14 @@ class ProfileViewController: UIViewController, Coordinating {
     }()
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView.init(
-            frame: .zero,
-            style: .plain
-        )
+        let tableView = UITableView.init(frame: .zero,style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.id)
-        
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.id)
-        
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.id)
-        
+        tableView.separatorColor = Pallete.viewControllerBackgroundColor
         tableView.dataSource = self
         tableView.delegate = self
-        
         return tableView
     }()
     
@@ -82,7 +75,7 @@ class ProfileViewController: UIViewController, Coordinating {
     override func viewDidLoad() {
         super.viewDidLoad()
         #if DEBUG
-        view.backgroundColor = .orange
+        view.backgroundColor = Pallete.viewControllerBackgroundColor
         #else
         view.backgroundColor = .red
         #endif
@@ -198,7 +191,6 @@ class ProfileViewController: UIViewController, Coordinating {
             self.avView.isUserInteractionEnabled  = true
         })
     }
-   
 }
 
 extension ProfileViewController: UITableViewDataSource {

@@ -24,7 +24,7 @@ class ProfileTableViewCell: UITableViewCell {
         button.setTitleColor(.white, for: .normal)
         button.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
         button.layer.shadowRadius = 4.0
-        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowColor = Pallete.standartColor.cgColor
         button.layer.shadowOpacity = 0.7
         button.completionHandler = {self.buttonPressed()}
         return button
@@ -34,7 +34,7 @@ class ProfileTableViewCell: UITableViewCell {
         let label1 = UILabel ()
         label1.translatesAutoresizingMaskIntoConstraints = false
         label1.font = UIFont.boldSystemFont(ofSize: 18)
-        label1.textColor = .black
+        label1.textColor = Pallete.standartColor
         return label1
     }()
     
@@ -44,7 +44,7 @@ class ProfileTableViewCell: UITableViewCell {
         let title = NSLocalizedString("profileTableViewCellStatusLabelText", comment: "")
         label2.text = title
         label2.font = label2.font.withSize(14)
-        label2.textColor = .gray
+        label2.textColor = Pallete.secondaryTextColor
         return label2
     }()
     
@@ -61,10 +61,10 @@ class ProfileTableViewCell: UITableViewCell {
     private lazy var statusTextField: TextFieldWithPadding = {
         let textField = TextFieldWithPadding ()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.backgroundColor = .white
+        textField.backgroundColor = Pallete.textFieldBackgroundColor
         textField.layer.cornerRadius = 12.0
         textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.borderColor = Pallete.standartColor.cgColor
         textField.font = textField.font?.withSize(15)
         textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         return textField
@@ -74,7 +74,8 @@ class ProfileTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .systemGray6
+        //contentView.backgroundColor = .systemGray6
+        contentView.backgroundColor = Pallete.viewControllerBackgroundColor
         contentView.addSubview(setStatusButton)
         contentView.addSubview(statusLabel)
         contentView.addSubview(avatarImageView)
@@ -124,4 +125,17 @@ class ProfileTableViewCell: UITableViewCell {
         statusText = textField.text!
     }
     
+    private func _updateColors() {
+        self.statusTextField.layer.borderColor = Pallete.standartColor.cgColor
+        self.setStatusButton.layer.shadowColor = Pallete.standartColor.cgColor
+        self.avatarImageView.layer.borderColor = Pallete.standartColor.cgColor
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self._updateColors()
+        //self.setNeedsDisplay()
+    }
+    
 }
+

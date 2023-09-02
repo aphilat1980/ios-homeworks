@@ -2,6 +2,13 @@ import UIKit
 
 class InfoViewController: UIViewController {
     
+    override var overrideUserInterfaceStyle: UIUserInterfaceStyle {
+        get {
+            .light
+        } set {
+        }
+    }
+    
     var residentsNames: [String] = []
     
     var residentsTable: UITableView = {

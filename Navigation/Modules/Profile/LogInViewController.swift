@@ -4,6 +4,7 @@ import FirebaseAuth
 
 class LogInViewController: UIViewController, Coordinating {
     
+    
     weak var coordinator: ModuleCoordinatable?
     
     public var loginDelegate: LoginViewControllerDelegate?
@@ -22,7 +23,8 @@ class LogInViewController: UIViewController, Coordinating {
     private lazy var contentView: UIView = {
         var contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = .white
+        //contentView.backgroundColor = .white
+        contentView.backgroundColor = Pallete.viewControllerBackgroundColor
         return contentView
     }()
     
@@ -51,7 +53,8 @@ class LogInViewController: UIViewController, Coordinating {
     
     public lazy var phoneTextField: TextFieldWithPadding = {
         let textField = TextFieldWithPadding ()
-        textField.backgroundColor = .systemGray6
+        //textField.backgroundColor = .systemGray6
+        textField.backgroundColor = Pallete.textFieldBackgroundColor
         textField.layer.borderWidth = 0.5
         textField.layer.borderColor = UIColor.lightGray.cgColor
         let placeholder = NSLocalizedString("loginViewControllerPlaceholder1", comment: "")
@@ -70,7 +73,8 @@ class LogInViewController: UIViewController, Coordinating {
     
     private lazy var passwordTextField: TextFieldWithPadding = {
         let textField = TextFieldWithPadding ()
-        textField.backgroundColor = .systemGray6
+        //textField.backgroundColor = .systemGray6
+        textField.backgroundColor = Pallete.textFieldBackgroundColor
         textField.layer.borderWidth = 0.5
         textField.layer.borderColor = UIColor.lightGray.cgColor
         let placeholder = NSLocalizedString("loginViewControllerPlaceholder2", comment: "")
@@ -104,7 +108,7 @@ class LogInViewController: UIViewController, Coordinating {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = Pallete.viewControllerBackgroundColor
         navigationController?.navigationBar.isHidden = true
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)

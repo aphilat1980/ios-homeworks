@@ -25,7 +25,7 @@ class PostTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         //label.text = Post.author
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .black
+        label.textColor = Pallete.standartColor
         label.numberOfLines = 2
         return label
     }()
@@ -34,7 +34,7 @@ class PostTableViewCell: UITableViewCell {
         let myImage  = UIImageView ()
         myImage.translatesAutoresizingMaskIntoConstraints = false
         myImage.contentMode = .scaleAspectFit
-        myImage.backgroundColor = .black
+        myImage.backgroundColor = Pallete.imageBackgroundColor
         myImage.clipsToBounds = true
         return myImage
     }()
@@ -68,7 +68,7 @@ class PostTableViewCell: UITableViewCell {
         let tapView = UITapGestureRecognizer( target: self, action: #selector(didTapView))
         tapView.numberOfTapsRequired = 2
         contentView.addGestureRecognizer(tapView)
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = Pallete.viewControllerBackgroundColor
         contentView.addSubview(author)
         contentView.addSubview(image)
         contentView.addSubview(my_description)

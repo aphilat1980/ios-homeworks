@@ -1,6 +1,13 @@
 import UIKit
 
 class FeedViewController: UIViewController {
+   
+    override var overrideUserInterfaceStyle: UIUserInterfaceStyle {
+        get {
+            .light
+        } set {
+        }
+    }
     
     let feedViewModel: FeedViewModel
     

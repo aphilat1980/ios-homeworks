@@ -19,7 +19,7 @@ class PhotosViewController: UIViewController {
             
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: viewLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = Pallete.viewControllerBackgroundColor
             
         collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.id)
         
@@ -42,10 +42,10 @@ class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = Pallete.viewControllerBackgroundColor
         let titleText = NSLocalizedString("photosViewControllerTitle", comment: "")
         title = titleText
-        navigationController?.navigationBar.backgroundColor = .systemGray6
+        navigationController?.navigationBar.backgroundColor = Pallete.viewControllerBackgroundColor
         view.addSubview(collectionView)
         setupConstraints()
         collectionView.dataSource = self

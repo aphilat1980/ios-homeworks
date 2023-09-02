@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		170FF4C9299D154300EF43C8 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170FF4C8299D154300EF43C8 /* InfoViewController.swift */; };
 		172123DE2AA190D600168C32 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 172123E02AA190D600168C32 /* Localizable.strings */; };
+		172123E32AA32B8B00168C32 /* Pallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172123E22AA32B8B00168C32 /* Pallete.swift */; };
 		1788A3C42A022A00005D240F /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3C32A022A00005D240F /* Module.swift */; };
 		1788A3C62A0261F2005D240F /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3C52A0261F2005D240F /* Coordinatable.swift */; };
 		1788A3C82A02624D005D240F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3C72A02624D005D240F /* AppCoordinator.swift */; };
@@ -77,6 +78,7 @@
 		172123DC2AA1004D00168C32 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		172123DF2AA190D600168C32 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		172123E12AA190DA00168C32 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		172123E22AA32B8B00168C32 /* Pallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pallete.swift; sourceTree = "<group>"; };
 		1788A3C32A022A00005D240F /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		1788A3C52A0261F2005D240F /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
 		1788A3C72A02624D005D240F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				17A223CC299A78A800DF17C7 /* Info.plist */,
 				1788A41B2A27A6D8005D240F /* NetworkManager.swift */,
 				1788A41D2A31FFF8005D240F /* GoogleService-Info.plist */,
+				172123E22AA32B8B00168C32 /* Pallete.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				1788A3C62A0261F2005D240F /* Coordinatable.swift in Sources */,
 				17A17CF829F9536100E56F33 /* FeedViewModel.swift in Sources */,
 				17A223C1299A78A700DF17C7 /* SceneDelegate.swift in Sources */,
+				172123E32AA32B8B00168C32 /* Pallete.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

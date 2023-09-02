@@ -47,7 +47,7 @@ class PhotosTableViewCell: UITableViewCell {
         let title = NSLocalizedString("photosTableViewCellTitleLabel", comment: "")
         label.text = title
         label.font = UIFont.boldSystemFont(ofSize: 24)
-        label.textColor = .black
+        label.textColor = Pallete.standartColor
         return label
     }()
     
@@ -56,7 +56,7 @@ class PhotosTableViewCell: UITableViewCell {
         myImage.translatesAutoresizingMaskIntoConstraints = false
         myImage.contentMode = .scaleAspectFit
         myImage.image = UIImage(systemName: "arrow.forward")
-        myImage.tintColor = .black
+        myImage.tintColor = Pallete.standartColor
         return myImage
     }()
     
@@ -84,7 +84,7 @@ class PhotosTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = Pallete.viewControllerBackgroundColor
         contentView.addSubview(stackView)
         contentView.addSubview(myTitle)
         contentView.addSubview(arrowImage)
