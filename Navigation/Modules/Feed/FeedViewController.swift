@@ -16,14 +16,16 @@ class FeedViewController: UIViewController {
     var timer: Timer?
     
     private lazy var button1: CustomButton = {
-          let button = CustomButton(title: "Перейти на пост - кнопка 1", radius: 8, backColor: .systemBlue)
+          let title = NSLocalizedString("feedViewControllerTitleButton1", comment: "")
+          let button = CustomButton(title: title, radius: 8, backColor: .systemBlue)
           button.completionHandler = {self.buttonPressed()}
           return button
     }()
     
     
     private lazy var button2: CustomButton = {
-        let button = CustomButton(title: "Перейти на пост - кнопка 2", radius: 8, backColor: .systemBlue)
+        let title = NSLocalizedString("feedViewControllerTitleButton2", comment: "")
+        let button = CustomButton(title: title, radius: 8, backColor: .systemBlue)
         button.translatesAutoresizingMaskIntoConstraints = true
         button.completionHandler = {self.buttonPressed()}
         return button
@@ -50,7 +52,8 @@ class FeedViewController: UIViewController {
         textField.backgroundColor = .systemGray6
         textField.layer.borderWidth = 0.5
         textField.layer.borderColor = UIColor.lightGray.cgColor
-        textField.placeholder = "Введите ключевое слово..."
+        let placeholder = NSLocalizedString("feedViewControllerTextFieldPlaceholder", comment: "")
+        textField.placeholder = placeholder
         textField.font = UIFont.systemFont(ofSize: 20)
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.keyboardType = UIKeyboardType.default
@@ -63,7 +66,8 @@ class FeedViewController: UIViewController {
     }()
     
     private lazy var checkGuessButton: CustomButton = {
-        let button = CustomButton(title: "Проверить", radius: 8, backColor: .systemBlue)
+        let title = NSLocalizedString("feedViewControllerCheckButtonTitle", comment: "")
+        let button = CustomButton(title: title, radius: 8, backColor: .systemBlue)
         button.translatesAutoresizingMaskIntoConstraints = true
         button.completionHandler = {self.check()}
         return button
@@ -127,9 +131,12 @@ class FeedViewController: UIViewController {
             case .emptyField:
                 self.view.backgroundColor = .black
                 self.stackView.isHidden = true
-
-                let alert = UIAlertController(title: "Ошибка!!", message: "Введено пустое значение!", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Вернуться", style: .default, handler: {action in self.feedViewModel.state = .initial }))
+                
+                let alertTitle = NSLocalizedString("feedViewControllerEmptyFieldAlertTitle", comment: "")
+                let alertMessage = NSLocalizedString("feedViewControllerEmptyFieldAlertMessage", comment: "")
+                let alertButtonTitle = NSLocalizedString("feedViewControllerEmptyFieldAlertButtonTitle", comment: "")
+                let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: alertButtonTitle, style: .default, handler: {action in self.feedViewModel.state = .initial }))
                 self.present(alert, animated: true)
             }
         }

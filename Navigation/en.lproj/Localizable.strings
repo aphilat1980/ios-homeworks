@@ -1,0 +1,86 @@
+/* 
+  Localizable.strings
+  Navigation
+
+  Created by Александр Филатов on 31.08.2023.
+  
+*/
+"feedViewControllerTitleButton1" = "Go to post - button 1";
+"feedViewControllerTitleButton2" = "Go to post - button 2";
+"feedViewControllerTextFieldPlaceholder" = "Enter a key word";
+"feedViewControllerCheckButtonTitle" = "Check";
+"feedViewControllerEmptyFieldAlertTitle" = "Error!!";
+"feedViewControllerEmptyFieldAlertMessage" = "Empty value entered!";
+"feedViewControllerEmptyFieldAlertButtonTitle" = "Back...";
+
+
+"savedPostsTabBarTitle" = "Saved Posts";
+"feedTabBarTitle" = "Feed";
+"profileTabBarTitle" = "Profile";
+
+
+"postViewControllerTitle" = "My Post";
+"postViewControllerRightNavButtonTitle" = "Info";
+
+
+"infoViewControllerButtonTitle" = "Get Alert";
+"infoViewControllerPlanetText" = "The orbital period of the planet Tatooine is ";
+"infoViewControllerAlertTitle" = "Alert";
+"infoViewControllerAlertMessage" = "Attention! Attention!";
+"infoViewControllerAlertAction1Title" = "Message 1";
+"infoViewControllerAlertAction1ResultText" = "You've tapped button Message 1";
+"infoViewControllerAlertAction2Title" = "Message 2";
+"infoViewControllerAlertAction2ResultText" = "You've tapped button Message 2";
+
+
+"loginViewControllerPlaceholder1" = "Emal or Phone";
+"loginViewControllerPlaceholder2" = "Password";
+"loginViewControllerButtonTitle" = "Log In";
+"loginViewControllerNoUserAlertTitle" = "Login Error";
+"loginViewControllerNoUserAlertMessage" = "User registration required";
+"loginViewControllerNoUserAlertAction1Title" = "Register new user";
+"loginViewControllerRegisterFailureAlertTitle" = "Login Error. User did not register";
+"loginViewControllerRegisterFailureActionTitle" = "Back";
+"loginViewControllerNoUserAlertAction2Title" = "Back";
+"loginViewControllerFailureAlertTitle" = "Login Error";
+"loginViewControllerFailureActionTitle" = "Back";
+"loginViewControllerLoginSuccessUserName" = "Alexander";
+"loginViewControllerLoginSuccessUserStatus" = "Hello!";
+
+
+"profileTableViewCellButtonTitile" = "Show status";
+"profileTableViewCellStatusLabelText" = "Waiting for something...";
+
+
+"profileViewControllerSuccessSavedAlertTitle" = "Post Saved Success";
+"profileViewControllerSuccessSavedAlertMessage" = "Check Saved Posts";
+"profileViewControllerFailureSavedAlertTitle" = "Post Saved Error";
+"profileViewControllerFailureSavedAlertMessage" = "You Have Saved This Post Already";
+
+
+"photosTableViewCellTitleLabel" = "Photos";
+
+"photosViewControllerTitle" = "Photo Galery";
+
+"postTableViewCellLikesText" = "Likes: ";
+"postTableViewCellViewsText" = "Views: ";
+
+"savedPostViewControllerLikesText" = "Likes: ";
+"savedPostViewControllerViewsText" = "Views: ";
+
+"savedPostViewControllerResetButton" = "Reset";
+"savedPostViewControllerSearchButton" = "Search";
+"savedPostViewControllerAlertTitle" = "Enter User Name";
+"savedPostViewControllerAlertActionTitle" = "Search";
+"savedPostViewControllerDeleteButtonTitle" = "Delete";
+
+"author1" = "Ivanov Ivan";
+"author2" = "Petrov Petr";
+"author3" = "Sidorov Oleg";
+"author4" = "Bogdanov Bogdan";
+
+
+"description1" = "A lot of controversy is also caused by the history of the origin of cats, which is also very ambiguous. The most common opinion, which, by the way, especially took root in Russia, is that the only ancestor of modern cats is the Western Asian North African steppe cat, which was not domesticated at all in Egypt, and in Nubia, and this happened about 4 thousand years ago. Only after that, cats came to Egypt, and then appeared in Asia, where they successfully interbred with forest Bengal species";
+"description2" = "Alien, alien (from other planets, from outer space), alien (English alien, “alien”) - a hypothetical intelligent being of extraterrestrial origin, a character of popular culture, including works of art, ufology, conspiracy theories; (particularly about the alien invasion) and some new religious movements";
+"description3" = "Cocktail - \"Burning lambrghini \": Pour into a cocktail glass first coffee liqueur, then sambuca so that it lies on the top layer. Pour Irish Cream into one glass and Blue Curacao into the other. We set fire to the sambuca, then pour the contents of two glasses at once into a cocktail glass while the guest drinks.";
+"description4" = "Skeleton - a set of bones of the human body, a passive part of the musculoskeletal system. It serves as a support for soft tissues, a point of attachment for muscles, a receptacle and protection for internal organs. The bone tissue of the skeleton develops from the mesenchyme.";

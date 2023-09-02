@@ -12,10 +12,10 @@ public extension Post {
     
     static func make() -> [Post] {
         [
-            Post(author: "Ivanov Ivan", my_description: "Много споров вызывает также история происхождения кошек, которая тоже весьма неоднозначна. Самое распространенное мнение, которое, кстати, особенно прижилось в России, заключается в том, что единым предком современных кошек является переднеазиатская североафриканская степная кошка, которая была одомашнена вовсе не в Египте, а в Нубии, и произошло это около 4 тысяч лет назад. Только после этого кошки попали в Египет, а затем появились и в Азии, где успешно скрестились с лесными бенгальскими видами", image: "1stPostImage", likes: 10, views: 100),
-            Post(author: "Petrov Petr", my_description: "Инопланетя́нин, пришелец (с других планет, из космоса), чужой (англ. alien, «чужой») — гипотетическое разумное существо внеземного происхождения, персонаж массовой культуры, в том числе художественных произведений, уфологии, конспирологии; (в частности, о вторжении инопланетян) и некоторых новых религиозных движений", image: "2ndPostImage", likes: 15, views: 150),
-            Post(author: "Sidorov Oleg", my_description: "Коктейль - \"Горящая ламбрджини\": Наливаем в коктейльную рюмку сначала кофейный ликёр, затем самбуку так, чтобы она легла верхним слоем. В одну рюмку наливаем Айриш крим, в другую — Блю Кюрасао. Поджигаем самбуку, затем вливаем в коктейльную рюмку сразу содержимое двух рюмок, пока гость пьёт.", image: "3rdPostImage", likes: 20, views: 21),
-            Post(author: "Bogdanov Bogdan", my_description: "Скелет - совокупность костей человеческого организма, пассивная часть опорно-двигательного аппарата. Служит опорой мягким тканям, точкой приложения мышц, вместилищем и защитой внутренних органов. Костная ткань скелета развивается из мезенхимы.", image: "4thPostImage", likes: 15, views: 231)
+            Post(author: NSLocalizedString("author1", comment: ""), my_description: NSLocalizedString("description1", comment: ""), image: "1stPostImage", likes: 10, views: 100),
+            Post(author: NSLocalizedString("author2", comment: ""), my_description: NSLocalizedString("description2", comment: ""), image: "2ndPostImage", likes: 15, views: 150),
+            Post(author: NSLocalizedString("author3", comment: ""), my_description: NSLocalizedString("description3", comment: ""), image: "3rdPostImage", likes: 20, views: 21),
+            Post(author: NSLocalizedString("author4", comment: ""), my_description: NSLocalizedString("description4", comment: ""), image: "4thPostImage", likes: 15, views: 231)
         ]
         
     }

@@ -19,7 +19,8 @@ class ProfileTableViewCell: UITableViewCell {
         return button
         }()*/
     private lazy var setStatusButton: CustomButton = {
-        let button = CustomButton(title: "Show status", radius: 4, backColor: .systemBlue)
+        let title = NSLocalizedString("profileTableViewCellButtonTitile", comment: "")
+        let button = CustomButton(title: title, radius: 4, backColor: .systemBlue)
         button.setTitleColor(.white, for: .normal)
         button.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
         button.layer.shadowRadius = 4.0
@@ -40,7 +41,8 @@ class ProfileTableViewCell: UITableViewCell {
     public lazy var statusLabel: UILabel = {
         let label2 = UILabel ()
         label2.translatesAutoresizingMaskIntoConstraints = false
-        label2.text = "Waiting for something..."
+        let title = NSLocalizedString("profileTableViewCellStatusLabelText", comment: "")
+        label2.text = title
         label2.font = label2.font.withSize(14)
         label2.textColor = .gray
         return label2

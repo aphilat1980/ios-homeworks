@@ -13,8 +13,10 @@ class PostTableViewCell: UITableViewCell {
          author.text = post?.author
          image.image = UIImage(named: post!.image)
          my_description.text = post?.my_description
-         likes.text = "Likes: \(post!.likes)"
-         views.text = "Views: \(post!.views)"
+         let likesText = NSLocalizedString("postTableViewCellLikesText", comment: "")
+         let viewsText = NSLocalizedString("postTableViewCellViewsText", comment: "")
+         likes.text = likesText + "\(post!.likes)"
+         views.text = viewsText + "\(post!.views)"
      }
      }
     

@@ -5,7 +5,7 @@ class PostViewController: UIViewController, Coordinating {
     var coordinator: ModuleCoordinatable?
     
 
-    var titlePost = "Мой пост"
+    var titlePost = NSLocalizedString("postViewControllerTitle", comment: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -13,7 +13,8 @@ class PostViewController: UIViewController, Coordinating {
         title = self.titlePost
         view.backgroundColor = .systemOrange
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Info", style: .plain, target: self, action: #selector(buttonPressed(_:)))
+        let buttonTitle = NSLocalizedString("postViewControllerRightNavButtonTitle", comment: "")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: buttonTitle, style: .plain, target: self, action: #selector(buttonPressed(_:)))
 
 }
     

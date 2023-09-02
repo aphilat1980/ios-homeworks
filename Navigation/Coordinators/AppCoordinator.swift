@@ -20,7 +20,8 @@ final class AppCoordinator: Coordinatable {
         let feedCoordinator = FeedCoordinator(moduleType: .feed, factory: factory)
         let loginCoordinator = LoginCoordinator(moduleType: .login, factory: factory)
         let savedPostViewController = SavedPostViewController()
-        savedPostViewController.tabBarItem = UITabBarItem(title: "Saved Posts", image: UIImage(systemName: "square.and.arrow.down"), tag: 2)
+        let title = NSLocalizedString("savedPostsTabBarTitle", comment: "")
+        savedPostViewController.tabBarItem = UITabBarItem(title: title, image: UIImage(systemName: "square.and.arrow.down"), tag: 2)
 
        
         /*let appTabBarController = AppTabBarController(viewControllers: [

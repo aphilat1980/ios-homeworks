@@ -54,7 +54,8 @@ class LogInViewController: UIViewController, Coordinating {
         textField.backgroundColor = .systemGray6
         textField.layer.borderWidth = 0.5
         textField.layer.borderColor = UIColor.lightGray.cgColor
-        textField.placeholder = "Email or phone"
+        let placeholder = NSLocalizedString("loginViewControllerPlaceholder1", comment: "")
+        textField.placeholder = placeholder
         textField.font = UIFont.systemFont(ofSize: 16)
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.keyboardType = UIKeyboardType.default
@@ -72,7 +73,8 @@ class LogInViewController: UIViewController, Coordinating {
         textField.backgroundColor = .systemGray6
         textField.layer.borderWidth = 0.5
         textField.layer.borderColor = UIColor.lightGray.cgColor
-        textField.placeholder = "Password"
+        let placeholder = NSLocalizedString("loginViewControllerPlaceholder2", comment: "")
+        textField.placeholder = placeholder
         textField.font = UIFont.systemFont(ofSize: 16)
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.keyboardType = UIKeyboardType.default
@@ -86,7 +88,8 @@ class LogInViewController: UIViewController, Coordinating {
     }()
     
     private lazy var logInButton: CustomButton = {
-        let button = CustomButton(title: "Log In", radius: 10, backColor: .systemBlue)
+        let title = NSLocalizedString("loginViewControllerButtonTitle", comment: "")
+        let button = CustomButton(title: title, radius: 10, backColor: .systemBlue)
         button.setBackgroundImage(UIImage (named: "buttonPixel"), for:.normal)
         let image = button.currentBackgroundImage
         button.setBackgroundImage (image?.image(alpha: 0.8), for: .highlighted)
@@ -155,13 +158,17 @@ class LogInViewController: UIViewController, Coordinating {
             
             switch authResult {
             case .success:
-                let user = User(userLogin: self!.phoneTextField.text!, userFullName: "Александр", userStatus: "Привет", userAvatar: UIImage(named: "avatar")!)
+                let userName = NSLocalizedString("loginViewControllerLoginSuccessUserName", comment: "")
+                let userStatus = NSLocalizedString("loginViewControllerLoginSuccessUserStatus", comment: "")
+                let user = User(userLogin: self!.phoneTextField.text!, userFullName: userName, userStatus: userStatus, userAvatar: UIImage(named: "avatar")!)
                 (self!.coordinator as? LoginCoordinator)?.eventOccurred(event: .loginButtonTapped(user))
             
             case .noUser:
-                
-                let alert = UIAlertController(title: "Ошибка входа", message: "Необходимо зарегистрировать пользователя", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Зарегистрировать нового пользователя", style: .default, handler: { action in
+                let noUserAlertTitle = NSLocalizedString("loginViewControllerNoUserAlertTitle", comment: "")
+                let noUserAlertMessage = NSLocalizedString("loginViewControllerNoUserAlertMessage", comment: "")
+                let alert = UIAlertController(title: noUserAlertTitle, message: noUserAlertMessage, preferredStyle: .alert)
+                let noUserAction1Title = NSLocalizedString("loginViewControllerNoUserAlertAction1Title", comment: "")
+                alert.addAction(UIAlertAction(title: noUserAction1Title, style: .default, handler: { action in
                         
                         self!.loginDelegate!.signUp(email: self!.phoneTextField.text!, password: self!.passwordTextField.text!) { [weak self] signUpResult in
                             
@@ -171,19 +178,24 @@ class LogInViewController: UIViewController, Coordinating {
                                     (self!.coordinator as? LoginCoordinator)?.eventOccurred(event: .loginButtonTapped(user))
                                 
                             case .failure(let error):
-                                let alert = UIAlertController(title: "Ошибка входа. Пользователь не зарегистрирован", message: error, preferredStyle: .alert)
-                                alert.addAction (UIAlertAction(title: "Вернуться", style: .default))
+                                let title = NSLocalizedString("loginViewControllerRegisterFailureAlertTitle", comment: "")
+                                let alert = UIAlertController(title: title, message: error, preferredStyle: .alert)
+                                let actionTitle = NSLocalizedString("loginViewControllerRegisterFailureActionTitle", comment: "")
+                                alert.addAction (UIAlertAction(title: actionTitle, style: .default))
                                 self!.present(alert, animated: true)
                             }
                         }
                     }))
-                    alert.addAction (UIAlertAction(title: "Вернуться", style: .default))
+                let noUserAction2Title = NSLocalizedString("loginViewControllerNoUserAlertAction2Title", comment: "")
+                    alert.addAction (UIAlertAction(title: noUserAction2Title, style: .default))
                     self!.present(alert, animated: true)
             
                 
             case .failure(let error):
-                let alert = UIAlertController(title: "Ошибка входа", message: error, preferredStyle: .alert)
-                alert.addAction (UIAlertAction(title: "Вернуться", style: .default))
+                let alertTitle = NSLocalizedString("loginViewControllerFailureAlertTitle", comment: "")
+                let alert = UIAlertController(title: alertTitle, message: error, preferredStyle: .alert)
+                let actionTitle = NSLocalizedString("loginViewControllerFailureActionTitle", comment: "")
+                alert.addAction (UIAlertAction(title: actionTitle, style: .default))
                 self!.present(alert, animated: true)
             }
     }

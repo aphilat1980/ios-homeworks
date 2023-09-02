@@ -43,7 +43,8 @@ class PhotosViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .systemGray6
-        title = "Photo Gallery"
+        let titleText = NSLocalizedString("photosViewControllerTitle", comment: "")
+        title = titleText
         navigationController?.navigationBar.backgroundColor = .systemGray6
         view.addSubview(collectionView)
         setupConstraints()

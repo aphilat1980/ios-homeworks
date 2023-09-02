@@ -25,9 +25,11 @@ extension Module.ModuleType {
     var tabBarItem: UITabBarItem {
         switch self {
         case .feed:
-            return UITabBarItem(title: "Лента", image: UIImage(systemName: "book.fill"), tag: 0)
+            let title = NSLocalizedString("feedTabBarTitle", comment: "")
+            return UITabBarItem(title: title, image: UIImage(systemName: "book.fill"), tag: 0)
         case .login:
-            return UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.fill"), tag: 1)
+            let title = NSLocalizedString("profileTabBarTitle", comment: "")
+            return UITabBarItem(title: title, image: UIImage(systemName: "person.fill"), tag: 1)
         }
     }
 }

@@ -95,14 +95,18 @@ class ProfileViewController: UIViewController, Coordinating {
     func bindModel () {
         
         postDataManager.postsUpdate = {
-            let alert = UIAlertController (title: "Post Saved Success", message: "Check Saved Posts", preferredStyle: .alert)
+            let alertTitle = NSLocalizedString("profileViewControllerSuccessSavedAlertTitle", comment: "")
+            let alertMessage = NSLocalizedString("profileViewControllerSuccessSavedAlertMessage", comment: "")
+            let alert = UIAlertController (title: alertTitle, message: alertMessage, preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .cancel)
             alert.addAction(action)
             self.present(alert, animated: true)
         }
         
         postDataManager.postDublicate = {
-            let alert = UIAlertController (title: "Post Saved Error", message: "You Have Saved This Post Already", preferredStyle: .alert)
+            let alertTitle = NSLocalizedString("profileViewControllerFailureSavedAlertTitle", comment: "")
+            let alertMessage = NSLocalizedString("profileViewControllerFailureSavedAlertMessage", comment: "")
+            let alert = UIAlertController (title: alertTitle, message: alertMessage, preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .cancel)
             alert.addAction(action)
             self.present(alert, animated: true)

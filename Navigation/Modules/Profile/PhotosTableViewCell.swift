@@ -44,7 +44,8 @@ class PhotosTableViewCell: UITableViewCell {
     private lazy var myTitle: UILabel = {
         let label = UILabel ()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Photos"
+        let title = NSLocalizedString("photosTableViewCellTitleLabel", comment: "")
+        label.text = title
         label.font = UIFont.boldSystemFont(ofSize: 24)
         label.textColor = .black
         return label

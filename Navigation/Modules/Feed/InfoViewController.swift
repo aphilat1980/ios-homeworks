@@ -13,7 +13,8 @@ class InfoViewController: UIViewController {
     
     
   private lazy var button: CustomButton = {
-        let button = CustomButton(title: "Вызвать алерт", radius: 8, backColor: .systemBlue)
+        let title = NSLocalizedString("infoViewControllerButtonTitle", comment: "")
+        let button = CustomButton(title: title, radius: 8, backColor: .systemBlue)
         button.completionHandler = {self.buttonPressed()}
         return button
   }()
@@ -65,7 +66,8 @@ class InfoViewController: UIViewController {
         
         NetworkManager().requestFromUrl2 {answer in
             DispatchQueue.main.async {
-                self.orbitalPeriodLabel.text = "Период обращения планеты Татуин равен \(answer)"
+                let text = NSLocalizedString("infoViewControllerPlanetText", comment: "")
+                self.orbitalPeriodLabel.text = text + "\(answer)"
                 }
         }
         
@@ -105,9 +107,15 @@ class InfoViewController: UIViewController {
     
     
     @objc func buttonPressed() {
-        let alert = UIAlertController(title: "Алерт", message: "Внимание Внимание!!", preferredStyle: .alert)
-        let action1 = UIAlertAction(title: "Сообщение 1", style: .default, handler: {action in print("Вы нажали кнопку Сообщение 1")})
-        let action2 = UIAlertAction(title: "Сообщение 2", style: .default, handler: {action in print("Вы нажали кнопку Сообщение 2")})
+        let alertTitle = NSLocalizedString("infoViewControllerAlertTitle", comment: "")
+        let alertMessage = NSLocalizedString("infoViewControllerAlertMessage", comment: "")
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        let alertAction1Title = NSLocalizedString("infoViewControllerAlertAction1Title", comment: "")
+        let alertAction1Result = NSLocalizedString("infoViewControllerAlertAction1ResultText", comment: "")
+        let action1 = UIAlertAction(title: alertAction1Title, style: .default, handler: {action in print(alertAction1Result)})
+        let alertAction2Title = NSLocalizedString("infoViewControllerAlertAction2Title", comment: "")
+        let alertAction2Result = NSLocalizedString("infoViewControllerAlertAction2ResultText", comment: "")
+        let action2 = UIAlertAction(title: alertAction2Title, style: .default, handler: {action in print(alertAction2Result)})
         alert.addAction(action1)
         alert.addAction(action2)
         present(alert, animated: true)

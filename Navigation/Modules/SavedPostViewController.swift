@@ -29,7 +29,9 @@ class SavedPostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Сбросить", style: .plain, target: self, action: #selector(resetSearch(_:))), UIBarButtonItem(title: "Поиск", style: .plain, target: self, action: #selector(searchAuthor(_:)))]
+        let resetButtonTitle = NSLocalizedString("savedPostViewControllerResetButton", comment: "")
+        let searchButtonTitle = NSLocalizedString("savedPostViewControllerSearchButton", comment: "")
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(title: resetButtonTitle, style: .plain, target: self, action: #selector(resetSearch(_:))), UIBarButtonItem(title: searchButtonTitle, style: .plain, target: self, action: #selector(searchAuthor(_:)))]
         
         view.backgroundColor = .green
         view.addSubview(tableView)
@@ -48,9 +50,11 @@ class SavedPostViewController: UIViewController {
     
     @objc func searchAuthor(_ sender: UIButton) {
         
-        let alert = UIAlertController (title: "Введите имя автора", message: nil, preferredStyle: .alert)
+        let alertTitle = NSLocalizedString("savedPostViewControllerAlertTitle", comment: "")
+        let alertActionTitle = NSLocalizedString("savedPostViewControllerAlertActionTitle", comment: "")
+        let alert = UIAlertController (title: alertTitle, message: nil, preferredStyle: .alert)
         alert.addTextField()
-        let action = UIAlertAction(title: "Применить", style: .default, handler: {_ in
+        let action = UIAlertAction(title: alertActionTitle, style: .default, handler: {_ in
             let author = alert.textFields![0].text!
             self.postDataManager.searchPost(author: author) {
                         self.tableView.reloadData()
@@ -89,8 +93,10 @@ extension SavedPostViewController: UITableViewDataSource, UITableViewDelegate {
         cell.author.text = currentLastItem.author
         cell.image.image = UIImage(named: currentLastItem.image!)
         cell.my_description.text = currentLastItem.myDescription
-        cell.likes.text = "Likes: \(currentLastItem.likes)"
-        cell.views.text = "Views: \(currentLastItem.views)"
+        let likesText = NSLocalizedString("savedPostViewControllerLikesText", comment: "")
+        let viewsText = NSLocalizedString("savedPostViewControllerViewsText", comment: "")
+        cell.likes.text = likesText + "\(currentLastItem.likes)"
+        cell.views.text = viewsText + "\(currentLastItem.views)"
         return cell
     }
     
@@ -98,9 +104,9 @@ extension SavedPostViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                        trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        
+        let buttonTitle = NSLocalizedString("savedPostViewControllerDeleteButtonTitle", comment: "")
         let delete = UIContextualAction(style: .destructive,
-                                        title: "Delete") { [weak self](action, view, completionHandler) in
+                                        title: buttonTitle) { [weak self](action, view, completionHandler) in
             self?.postDataManager.deletePost(index: indexPath.row)
             tableView.reloadData()
             completionHandler(true)
