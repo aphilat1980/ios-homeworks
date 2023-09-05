@@ -10,6 +10,11 @@
 		170FF4C9299D154300EF43C8 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170FF4C8299D154300EF43C8 /* InfoViewController.swift */; };
 		172123DE2AA190D600168C32 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 172123E02AA190D600168C32 /* Localizable.strings */; };
 		172123E32AA32B8B00168C32 /* Pallete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172123E22AA32B8B00168C32 /* Pallete.swift */; };
+		172123EB2AA451B600168C32 /* NavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172123EA2AA451B600168C32 /* NavigationTests.swift */; };
+		172123F22AA4C36700168C32 /* FeedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172123F12AA4C36700168C32 /* FeedViewModelTests.swift */; };
+		172123F42AA4C8EB00168C32 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172123F32AA4C8EB00168C32 /* LoginViewModelTests.swift */; };
+		172123F72AA4D2CB00168C32 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 172123F62AA4D2CB00168C32 /* FirebaseAuth */; };
+		172123F92AA62DAC00168C32 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172123F82AA62DAC00168C32 /* LoginViewModel.swift */; };
 		1788A3C42A022A00005D240F /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3C32A022A00005D240F /* Module.swift */; };
 		1788A3C62A0261F2005D240F /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3C52A0261F2005D240F /* Coordinatable.swift */; };
 		1788A3C82A02624D005D240F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3C72A02624D005D240F /* AppCoordinator.swift */; };
@@ -49,6 +54,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		172123EC2AA451B600168C32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 17A223B3299A78A700DF17C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 17A223BA299A78A700DF17C7;
+			remoteInfo = Navigation;
+		};
 		17A17CDF29E134E600E56F33 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 17A223B3299A78A700DF17C7 /* Project object */;
@@ -79,6 +91,11 @@
 		172123DF2AA190D600168C32 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		172123E12AA190DA00168C32 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		172123E22AA32B8B00168C32 /* Pallete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pallete.swift; sourceTree = "<group>"; };
+		172123E82AA451B600168C32 /* NavigationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		172123EA2AA451B600168C32 /* NavigationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTests.swift; sourceTree = "<group>"; };
+		172123F12AA4C36700168C32 /* FeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModelTests.swift; sourceTree = "<group>"; };
+		172123F32AA4C8EB00168C32 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
+		172123F82AA62DAC00168C32 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		1788A3C32A022A00005D240F /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		1788A3C52A0261F2005D240F /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
 		1788A3C72A02624D005D240F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -116,6 +133,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		172123E52AA451B600168C32 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				172123F72AA4D2CB00168C32 /* FirebaseAuth in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17A17CD829E134E600E56F33 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,6 +162,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		172123E92AA451B600168C32 /* NavigationTests */ = {
+			isa = PBXGroup;
+			children = (
+				172123EA2AA451B600168C32 /* NavigationTests.swift */,
+				172123F12AA4C36700168C32 /* FeedViewModelTests.swift */,
+				172123F32AA4C8EB00168C32 /* LoginViewModelTests.swift */,
+			);
+			path = NavigationTests;
+			sourceTree = "<group>";
+		};
+		172123F52AA4D2CB00168C32 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1769621529A51F9A009A9981 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +187,7 @@
 				17D32F0729B3204400C4A023 /* PhotosTableViewCell.swift */,
 				17D32F0929B4739200C4A023 /* ProfileTableViewCell.swift */,
 				17D32EFF29AB739800C4A023 /* LogInViewController.swift */,
+				172123F82AA62DAC00168C32 /* LoginViewModel.swift */,
 				17D32F0329B24F9200C4A023 /* PhotosViewController.swift */,
 				17D32F0529B2512200C4A023 /* PhotosCollectionViewCell.swift */,
 			);
@@ -209,7 +252,9 @@
 				1788A41F2A3200C0005D240F /* GoogleService-Info.plist */,
 				17A223BD299A78A700DF17C7 /* Navigation */,
 				17A17CDC29E134E600E56F33 /* StorageService */,
+				172123E92AA451B600168C32 /* NavigationTests */,
 				17A223BC299A78A700DF17C7 /* Products */,
+				172123F52AA4D2CB00168C32 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -218,6 +263,7 @@
 			children = (
 				17A223BB299A78A700DF17C7 /* Navigation.app */,
 				17A17CDB29E134E600E56F33 /* StorageService.framework */,
+				172123E82AA451B600168C32 /* NavigationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -259,6 +305,27 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		172123E72AA451B600168C32 /* NavigationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 172123F02AA451B600168C32 /* Build configuration list for PBXNativeTarget "NavigationTests" */;
+			buildPhases = (
+				172123E42AA451B600168C32 /* Sources */,
+				172123E52AA451B600168C32 /* Frameworks */,
+				172123E62AA451B600168C32 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				172123ED2AA451B600168C32 /* PBXTargetDependency */,
+			);
+			name = NavigationTests;
+			packageProductDependencies = (
+				172123F62AA4D2CB00168C32 /* FirebaseAuth */,
+			);
+			productName = NavigationTests;
+			productReference = 172123E82AA451B600168C32 /* NavigationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		17A17CDA29E134E600E56F33 /* StorageService */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 17A17CE329E134E600E56F33 /* Build configuration list for PBXNativeTarget "StorageService" */;
@@ -311,6 +378,10 @@
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
+					172123E72AA451B600168C32 = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = 17A223BA299A78A700DF17C7;
+					};
 					17A17CDA29E134E600E56F33 = {
 						CreatedOnToolsVersion = 14.0.1;
 					};
@@ -339,11 +410,19 @@
 			targets = (
 				17A223BA299A78A700DF17C7 /* Navigation */,
 				17A17CDA29E134E600E56F33 /* StorageService */,
+				172123E72AA451B600168C32 /* NavigationTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		172123E62AA451B600168C32 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17A17CD929E134E600E56F33 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -365,6 +444,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		172123E42AA451B600168C32 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				172123F42AA4C8EB00168C32 /* LoginViewModelTests.swift in Sources */,
+				172123F22AA4C36700168C32 /* FeedViewModelTests.swift in Sources */,
+				172123EB2AA451B600168C32 /* NavigationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		17A17CD729E134E600E56F33 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -398,6 +487,7 @@
 				17D32F0829B3204400C4A023 /* PhotosTableViewCell.swift in Sources */,
 				170FF4C9299D154300EF43C8 /* InfoViewController.swift in Sources */,
 				178A51F42A4B1D05007E9229 /* SavedPostViewController.swift in Sources */,
+				172123F92AA62DAC00168C32 /* LoginViewModel.swift in Sources */,
 				17D32F0429B24F9200C4A023 /* PhotosViewController.swift in Sources */,
 				17D32F0029AB739800C4A023 /* LogInViewController.swift in Sources */,
 				1788A3CA2A0262F1005D240F /* FeedCoordinator.swift in Sources */,
@@ -411,6 +501,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		172123ED2AA451B600168C32 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 17A223BA299A78A700DF17C7 /* Navigation */;
+			targetProxy = 172123EC2AA451B600168C32 /* PBXContainerItemProxy */;
+		};
 		17A17CE029E134E600E56F33 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 17A17CDA29E134E600E56F33 /* StorageService */;
@@ -440,6 +535,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		172123EE2AA451B600168C32 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Netology.NavigationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Navigation.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Navigation";
+			};
+			name = Debug;
+		};
+		172123EF2AA451B600168C32 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Netology.NavigationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Navigation.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Navigation";
+			};
+			name = Release;
+		};
 		17A17CE429E134E600E56F33 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -673,6 +802,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		172123F02AA451B600168C32 /* Build configuration list for PBXNativeTarget "NavigationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				172123EE2AA451B600168C32 /* Debug */,
+				172123EF2AA451B600168C32 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		17A17CE329E134E600E56F33 /* Build configuration list for PBXNativeTarget "StorageService" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -722,6 +860,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		172123F62AA4D2CB00168C32 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1788A4202A320879005D240F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
 		1788A4212A320879005D240F /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1788A4202A320879005D240F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

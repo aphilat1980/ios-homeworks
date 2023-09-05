@@ -11,7 +11,8 @@ enum Event {
     case infoButtonTapped
 }
 
-final class FeedCoordinator: ModuleCoordinatable {
+final class FeedCoordinator: ModuleCoordinatable, FeedModelViewTesting {
+    
     let moduleType: Module.ModuleType
     
     private let factory: AppFactory
@@ -37,9 +38,7 @@ final class FeedCoordinator: ModuleCoordinatable {
         switch event {
         
         case .postButtonTapped:
-            let viewControllerToPush: PostViewController & Coordinating = PostViewController()
-            viewControllerToPush.coordinator = self
-            (module?.view as? UINavigationController)?.pushViewController(viewControllerToPush, animated: true)
+            pushPostViewController()
         
         case .infoButtonTapped:
             let infoViewController = InfoViewController()
@@ -47,6 +46,12 @@ final class FeedCoordinator: ModuleCoordinatable {
             infoViewController.modalPresentationStyle = .pageSheet
             (module?.view as? UIViewController)?.present(infoViewController, animated: true)
         }
+    }
+    
+    func pushPostViewController () {
+        let viewControllerToPush: PostViewController & Coordinating = PostViewController()
+        viewControllerToPush.coordinator = self
+        (module?.view as? UINavigationController)?.pushViewController(viewControllerToPush, animated: true)
     }
     
 }

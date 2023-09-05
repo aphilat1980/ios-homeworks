@@ -33,7 +33,9 @@ class FeedViewModel:ViewModelProtocol, Coordinating {
         }
     }
     
+    //var feedModel: FeedModel
     var feedModel: FeedModel
+    
     
     init(feedModel: FeedModel) {
         self.feedModel = feedModel
@@ -53,4 +55,13 @@ class FeedViewModel:ViewModelProtocol, Coordinating {
             (coordinator as? FeedCoordinator)?.eventOccurred(event: .postButtonTapped)
         }
     }
+}
+
+//протокол для тестирования
+protocol FeedModelViewTesting {
+    
+    func eventOccurred (event: Event)
+    func pushPostViewController ()
+    
+    
 }

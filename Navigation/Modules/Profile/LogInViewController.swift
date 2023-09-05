@@ -1,15 +1,21 @@
 
 import UIKit
-import FirebaseAuth
+
 
 class LogInViewController: UIViewController, Coordinating {
     
-    
     weak var coordinator: ModuleCoordinatable?
     
-    public var loginDelegate: LoginViewControllerDelegate?
+    let loginViewModel: LoginViewModel
     
-    //weak var coordinator: LoginCoordinator?
+    init(loginViewModel: LoginViewModel) {
+        self.loginViewModel = loginViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -108,6 +114,89 @@ class LogInViewController: UIViewController, Coordinating {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupView()
+        bindViewModel()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+        
+    }
+    
+    
+    func bindViewModel () {
+            
+        loginViewModel.onStateDidChange = {[weak self] state in
+            guard let self = self else {
+                return
+            }
+            
+            switch state {
+            case .initial:
+                self.view.backgroundColor = Pallete.viewControllerBackgroundColor
+                
+            case .successExistUser:
+                self.successLoginExistUser()
+                
+            case .failureLogin(let error):
+                self.showAlertLoginFailure(error: error)
+                
+            case .noUser:
+                self.showAlertNoUser()
+                
+            case .successNewUser:
+                self.successRegisterNewUser()
+                
+            case .failureRegister(let error):
+                self.showAlertRegisterFailure(error: error)
+        }
+      }
+    }
+        
+    func successLoginExistUser () {
+        
+        let userName = NSLocalizedString("loginViewControllerLoginSuccessUserName", comment: "")
+        let userStatus = NSLocalizedString("loginViewControllerLoginSuccessUserStatus", comment: "")
+        let user = User(userLogin: self.phoneTextField.text!, userFullName: userName, userStatus: userStatus, userAvatar: UIImage(named: "avatar")!)
+        (self.coordinator as? LoginCoordinator)?.eventOccurred(event: .loginButtonTapped(user))
+    }
+    
+    func showAlertLoginFailure (error: String) {
+        let alertTitle = NSLocalizedString("loginViewControllerFailureAlertTitle", comment: "")
+        let alert = UIAlertController(title: alertTitle, message: error, preferredStyle: .alert)
+        let actionTitle = NSLocalizedString("loginViewControllerFailureActionTitle", comment: "")
+        alert.addAction (UIAlertAction(title: actionTitle, style: .default))
+        self.present(alert, animated: true)
+    }
+    
+    func showAlertNoUser () {
+        let noUserAlertTitle = NSLocalizedString("loginViewControllerNoUserAlertTitle", comment: "")
+        let noUserAlertMessage = NSLocalizedString("loginViewControllerNoUserAlertMessage", comment: "")
+        let alert = UIAlertController(title: noUserAlertTitle, message: noUserAlertMessage, preferredStyle: .alert)
+        let noUserAction1Title = NSLocalizedString("loginViewControllerNoUserAlertAction1Title", comment: "")
+        alert.addAction(UIAlertAction(title: noUserAction1Title, style: .default, handler: { action in
+            self.loginViewModel.updateState(viewInput: .newUserRegisterButtonPressed(email: self.phoneTextField.text!, password: self.passwordTextField.text!))
+        }))
+        let noUserAction2Title = NSLocalizedString("loginViewControllerNoUserAlertAction2Title", comment: "")
+        alert.addAction (UIAlertAction(title: noUserAction2Title, style: .default))
+        self.present(alert, animated: true)
+    }
+    
+    func successRegisterNewUser () {
+        let user = User(userLogin: self.phoneTextField.text!, userFullName: "\(self.phoneTextField.text!)", userStatus: "Привет", userAvatar: UIImage(named: "avatar")!)
+        (self.coordinator as? LoginCoordinator)?.eventOccurred(event: .loginButtonTapped(user))
+    }
+    
+    func showAlertRegisterFailure (error: String) {
+        let title = NSLocalizedString("loginViewControllerRegisterFailureAlertTitle", comment: "")
+        let alert = UIAlertController(title: title, message: error, preferredStyle: .alert)
+        let actionTitle = NSLocalizedString("loginViewControllerRegisterFailureActionTitle", comment: "")
+        alert.addAction (UIAlertAction(title: actionTitle, style: .default))
+        self.present(alert, animated: true)
+    }
+    
+    
+    
+    private func setupView() {
         view.backgroundColor = Pallete.viewControllerBackgroundColor
         navigationController?.navigationBar.isHidden = true
         view.addSubview(scrollView)
@@ -115,13 +204,7 @@ class LogInViewController: UIViewController, Coordinating {
         contentView.addSubview(avatarImageView)
         contentView.addSubview(stackView)
         contentView.addSubview(logInButton)
-        setupConstraints()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
         
-    }
-    
-    private func setupConstraints() {
         let safeAreaGuide = view.safeAreaLayoutGuide
             
         NSLayoutConstraint.activate([
@@ -158,53 +241,12 @@ class LogInViewController: UIViewController, Coordinating {
     
     @objc func buttonPressed() {
         
-        loginDelegate!.checkCredentials(email: phoneTextField.text!, password: passwordTextField.text!) { [weak self] authResult in
-            
-            switch authResult {
-            case .success:
-                let userName = NSLocalizedString("loginViewControllerLoginSuccessUserName", comment: "")
-                let userStatus = NSLocalizedString("loginViewControllerLoginSuccessUserStatus", comment: "")
-                let user = User(userLogin: self!.phoneTextField.text!, userFullName: userName, userStatus: userStatus, userAvatar: UIImage(named: "avatar")!)
-                (self!.coordinator as? LoginCoordinator)?.eventOccurred(event: .loginButtonTapped(user))
-            
-            case .noUser:
-                let noUserAlertTitle = NSLocalizedString("loginViewControllerNoUserAlertTitle", comment: "")
-                let noUserAlertMessage = NSLocalizedString("loginViewControllerNoUserAlertMessage", comment: "")
-                let alert = UIAlertController(title: noUserAlertTitle, message: noUserAlertMessage, preferredStyle: .alert)
-                let noUserAction1Title = NSLocalizedString("loginViewControllerNoUserAlertAction1Title", comment: "")
-                alert.addAction(UIAlertAction(title: noUserAction1Title, style: .default, handler: { action in
-                        
-                        self!.loginDelegate!.signUp(email: self!.phoneTextField.text!, password: self!.passwordTextField.text!) { [weak self] signUpResult in
-                            
-                            switch signUpResult {
-                            case .success:
-                                let user = User(userLogin: self!.phoneTextField.text!, userFullName: "\(self!.phoneTextField.text!)", userStatus: "Привет", userAvatar: UIImage(named: "avatar")!)
-                                    (self!.coordinator as? LoginCoordinator)?.eventOccurred(event: .loginButtonTapped(user))
-                                
-                            case .failure(let error):
-                                let title = NSLocalizedString("loginViewControllerRegisterFailureAlertTitle", comment: "")
-                                let alert = UIAlertController(title: title, message: error, preferredStyle: .alert)
-                                let actionTitle = NSLocalizedString("loginViewControllerRegisterFailureActionTitle", comment: "")
-                                alert.addAction (UIAlertAction(title: actionTitle, style: .default))
-                                self!.present(alert, animated: true)
-                            }
-                        }
-                    }))
-                let noUserAction2Title = NSLocalizedString("loginViewControllerNoUserAlertAction2Title", comment: "")
-                    alert.addAction (UIAlertAction(title: noUserAction2Title, style: .default))
-                    self!.present(alert, animated: true)
-            
-                
-            case .failure(let error):
-                let alertTitle = NSLocalizedString("loginViewControllerFailureAlertTitle", comment: "")
-                let alert = UIAlertController(title: alertTitle, message: error, preferredStyle: .alert)
-                let actionTitle = NSLocalizedString("loginViewControllerFailureActionTitle", comment: "")
-                alert.addAction (UIAlertAction(title: actionTitle, style: .default))
-                self!.present(alert, animated: true)
-            }
-    }
+        loginViewModel.updateState(viewInput: .loginButtonTapped(email: self.phoneTextField.text!, password: self.passwordTextField.text!))
+        
         
     }
+        
+    
     
     @objc func keyboardWillShow(notification:NSNotification) {
 
@@ -254,3 +296,6 @@ extension UIImage {
         return newImage
     }
 }
+
+
+

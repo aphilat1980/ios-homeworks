@@ -14,6 +14,7 @@ public class Checker {
 
 protocol LoginViewControllerDelegate: CheckerServiceProtocol, AnyObject {
     func check (checker:Checker, user: String, password: String) -> Bool
+
 }
 
 class LoginInspector: LoginViewControllerDelegate {

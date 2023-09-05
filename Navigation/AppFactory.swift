@@ -23,9 +23,10 @@ final class AppFactory {
             return Module(moduleType: moduleType, viewModel: viewModel, view: view)
         
         case .login:
-            let loginVC = LogInViewController()
+            let viewModel = LoginViewModel(loginDelegate: LoginInspector())
+            let loginVC = LogInViewController(loginViewModel: viewModel)
             //loginVC.loginDelegate = MyLoginFactory().makeLoginInspector()
-            loginVC.loginDelegate = LoginInspector()
+            //loginVC.loginDelegate = LoginInspector()
             let view = UINavigationController(rootViewController: loginVC)
             return Module(moduleType: moduleType, viewModel: nil, view: view)
         }
