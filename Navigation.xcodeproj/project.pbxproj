@@ -15,6 +15,7 @@
 		172123F42AA4C8EB00168C32 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172123F32AA4C8EB00168C32 /* LoginViewModelTests.swift */; };
 		172123F72AA4D2CB00168C32 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 172123F62AA4D2CB00168C32 /* FirebaseAuth */; };
 		172123F92AA62DAC00168C32 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172123F82AA62DAC00168C32 /* LoginViewModel.swift */; };
+		1736238A2AAB470100BB7F4D /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173623892AAB470100BB7F4D /* LocalNotificationsService.swift */; };
 		1788A3C42A022A00005D240F /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3C32A022A00005D240F /* Module.swift */; };
 		1788A3C62A0261F2005D240F /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3C52A0261F2005D240F /* Coordinatable.swift */; };
 		1788A3C82A02624D005D240F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3C72A02624D005D240F /* AppCoordinator.swift */; };
@@ -96,6 +97,7 @@
 		172123F12AA4C36700168C32 /* FeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModelTests.swift; sourceTree = "<group>"; };
 		172123F32AA4C8EB00168C32 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		172123F82AA62DAC00168C32 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		173623892AAB470100BB7F4D /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
 		1788A3C32A022A00005D240F /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		1788A3C52A0261F2005D240F /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
 		1788A3C72A02624D005D240F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				1788A41B2A27A6D8005D240F /* NetworkManager.swift */,
 				1788A41D2A31FFF8005D240F /* GoogleService-Info.plist */,
 				172123E22AA32B8B00168C32 /* Pallete.swift */,
+				173623892AAB470100BB7F4D /* LocalNotificationsService.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				17A17CF029EBC65D00E56F33 /* Checker.swift in Sources */,
 				17A17CFC29F97D5C00E56F33 /* CustomButton.swift in Sources */,
 				17A17CFA29F976C400E56F33 /* FeedModel.swift in Sources */,
+				1736238A2AAB470100BB7F4D /* LocalNotificationsService.swift in Sources */,
 				17A223F9299BBB5200DF17C7 /* PostViewController.swift in Sources */,
 				1788A3CE2A026859005D240F /* LoginCoordinator.swift in Sources */,
 				1788A3C82A02624D005D240F /* AppCoordinator.swift in Sources */,
