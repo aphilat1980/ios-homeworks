@@ -122,7 +122,7 @@ class LogInViewController: UIViewController, Coordinating {
         button.setBackgroundImage (image?.image(alpha: 0.8), for: .disabled)
         button.setTitleColor(.white, for: .normal)
         button.clipsToBounds = true
-        //button.completionHandler = {self.biometricButtonPressed()}
+        button.completionHandler = {self.biometricButtonPressed()}
         return button
   }()
     
@@ -219,7 +219,7 @@ class LogInViewController: UIViewController, Coordinating {
         contentView.addSubview(avatarImageView)
         contentView.addSubview(stackView)
         contentView.addSubview(logInButton)
-        //contentView.addSubview(biometricLogInButton)
+        contentView.addSubview(biometricLogInButton)
         
         let safeAreaGuide = view.safeAreaLayoutGuide
             
@@ -252,8 +252,12 @@ class LogInViewController: UIViewController, Coordinating {
             logInButton.heightAnchor.constraint(equalToConstant: 50),
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            //biometricLogInButton.centerXAnchor.constraint(equalTo: logInButton.centerXAnchor),
-            //biometricLogInButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 30)
+            biometricLogInButton.centerXAnchor.constraint(equalTo: logInButton.centerXAnchor),
+            biometricLogInButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 10),
+            biometricLogInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            biometricLogInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            biometricLogInButton.heightAnchor.constraint(equalToConstant: 50)
+            
             ])
         }
     
@@ -264,19 +268,16 @@ class LogInViewController: UIViewController, Coordinating {
         
     }
     
-    /*@objc func biometricButtonPressed() {
+    @objc func biometricButtonPressed() {
         
         LocalAuthorizationService().authorizeIfPossible { success in
-            
             if success {
                 self.successLoginExistUser()
             } else {
                 self.showAlertLoginFailure(error: "FaceID authorization failure")
             }
         }
-        
-        
-    }*/
+    }
         
     
     

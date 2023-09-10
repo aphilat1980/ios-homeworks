@@ -14,31 +14,20 @@ class LocalAuthorizationService {
         
         let context = LAContext()
         var error: NSError?
-        let canEvaluatePolicy = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
         
-        if error != nil {
-            print (error?.localizedDescription)
-            authorizationFinished(false)
-        }
-        guard canEvaluatePolicy else {
-            print (canEvaluatePolicy)
-            print ("here we are")
-            authorizationFinished(false)
-            return
-        }
-        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Разрешите использовать Face ID") { success, error in
-            DispatchQueue.main.async {
-                if success {
-                    authorizationFinished(true)
-                } else {
-                    print (error?.localizedDescription)
-                    authorizationFinished(false)
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Разрешите использовать Face ID") { success, error in
+                DispatchQueue.main.async {
+                    if success {
+                        authorizationFinished(true)
+                    } else {
+                        authorizationFinished(false)
+                    }
                 }
             }
+        } else {
+            authorizationFinished(false)
         }
-    
-}
-    
-    
-    
+        
+    }
 }
