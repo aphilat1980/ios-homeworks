@@ -16,6 +16,7 @@
 		172123F72AA4D2CB00168C32 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 172123F62AA4D2CB00168C32 /* FirebaseAuth */; };
 		172123F92AA62DAC00168C32 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172123F82AA62DAC00168C32 /* LoginViewModel.swift */; };
 		1736238A2AAB470100BB7F4D /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173623892AAB470100BB7F4D /* LocalNotificationsService.swift */; };
+		1736238C2AAC2AC400BB7F4D /* LocalAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1736238B2AAC2AC400BB7F4D /* LocalAuthorizationService.swift */; };
 		1788A3C42A022A00005D240F /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3C32A022A00005D240F /* Module.swift */; };
 		1788A3C62A0261F2005D240F /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3C52A0261F2005D240F /* Coordinatable.swift */; };
 		1788A3C82A02624D005D240F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1788A3C72A02624D005D240F /* AppCoordinator.swift */; };
@@ -98,6 +99,7 @@
 		172123F32AA4C8EB00168C32 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		172123F82AA62DAC00168C32 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		173623892AAB470100BB7F4D /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
+		1736238B2AAC2AC400BB7F4D /* LocalAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthorizationService.swift; sourceTree = "<group>"; };
 		1788A3C32A022A00005D240F /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		1788A3C52A0261F2005D240F /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
 		1788A3C72A02624D005D240F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				1788A41D2A31FFF8005D240F /* GoogleService-Info.plist */,
 				172123E22AA32B8B00168C32 /* Pallete.swift */,
 				173623892AAB470100BB7F4D /* LocalNotificationsService.swift */,
+				1736238B2AAC2AC400BB7F4D /* LocalAuthorizationService.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				17D32F0829B3204400C4A023 /* PhotosTableViewCell.swift in Sources */,
 				170FF4C9299D154300EF43C8 /* InfoViewController.swift in Sources */,
 				178A51F42A4B1D05007E9229 /* SavedPostViewController.swift in Sources */,
+				1736238C2AAC2AC400BB7F4D /* LocalAuthorizationService.swift in Sources */,
 				172123F92AA62DAC00168C32 /* LoginViewModel.swift in Sources */,
 				17D32F0429B24F9200C4A023 /* PhotosViewController.swift in Sources */,
 				17D32F0029AB739800C4A023 /* LogInViewController.swift in Sources */,
@@ -757,6 +761,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please, we need your face ID";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -785,6 +790,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please, we need your face ID";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";

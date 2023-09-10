@@ -112,6 +112,21 @@ class LogInViewController: UIViewController, Coordinating {
   }()
     
     
+    private lazy var biometricLogInButton: CustomButton = {
+        let title = "Face ID Login"
+        let button = CustomButton(title: title, radius: 10, backColor: .systemBlue)
+        button.setBackgroundImage(UIImage (named: "buttonPixel"), for:.normal)
+        let image = button.currentBackgroundImage
+        button.setBackgroundImage (image?.image(alpha: 0.8), for: .highlighted)
+        button.setBackgroundImage (image?.image(alpha: 0.8), for: .selected)
+        button.setBackgroundImage (image?.image(alpha: 0.8), for: .disabled)
+        button.setTitleColor(.white, for: .normal)
+        button.clipsToBounds = true
+        //button.completionHandler = {self.biometricButtonPressed()}
+        return button
+  }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -204,6 +219,7 @@ class LogInViewController: UIViewController, Coordinating {
         contentView.addSubview(avatarImageView)
         contentView.addSubview(stackView)
         contentView.addSubview(logInButton)
+        //contentView.addSubview(biometricLogInButton)
         
         let safeAreaGuide = view.safeAreaLayoutGuide
             
@@ -235,7 +251,9 @@ class LogInViewController: UIViewController, Coordinating {
             logInButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+            logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            //biometricLogInButton.centerXAnchor.constraint(equalTo: logInButton.centerXAnchor),
+            //biometricLogInButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 30)
             ])
         }
     
@@ -245,6 +263,20 @@ class LogInViewController: UIViewController, Coordinating {
         
         
     }
+    
+    /*@objc func biometricButtonPressed() {
+        
+        LocalAuthorizationService().authorizeIfPossible { success in
+            
+            if success {
+                self.successLoginExistUser()
+            } else {
+                self.showAlertLoginFailure(error: "FaceID authorization failure")
+            }
+        }
+        
+        
+    }*/
         
     
     

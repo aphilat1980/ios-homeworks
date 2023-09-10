@@ -12,14 +12,35 @@ class LocalNotificationsService: NSObject, UNUserNotificationCenterDelegate {
     
     func registeForLatestUpdatesIfPossible() {
         
-        
         let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.badge, .sound, .provisional, .alert]) { success, error in
-            if let error {
-                print (error.localizedDescription)}
+        center.getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+                
+            case .authorized:
+                self.dispatchNotification()
+            case .denied:
+                return
+            case .notDetermined:
+                center.requestAuthorization(options: [.badge, .sound, .provisional, .alert]) { success, error in
+                    if success {
+                        self.dispatchNotification()
+                    }
+                    if let error {
+                        print (error.localizedDescription)
+                    }
+                }
+            default:
+                    return
+            }
         }
-       
-        // registerUpdatesCategory()
+    }
+        
+    
+    func dispatchNotification () {
+        
+        let id = "myNotifications"
+        let center = UNUserNotificationCenter.current()
+        
         let content = UNMutableNotificationContent()
         content.title = "Посмотрите последние обновления"
         content.body = "Посмотрите последние обновления"
@@ -28,10 +49,12 @@ class LocalNotificationsService: NSObject, UNUserNotificationCenterDelegate {
         dateComponents.hour = 19
         dateComponents.minute = 00
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+        center.removePendingNotificationRequests(withIdentifiers: [id])
         center.add(request)
-        
     }
+    
+    
     
     /*func registerUpdatesCategory() {
         
