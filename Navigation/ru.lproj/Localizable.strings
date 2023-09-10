@@ -1,0 +1,87 @@
+/* 
+  Localizable.strings
+  Navigation
+
+  Created by Александр Филатов on 31.08.2023.
+  
+*/
+"feedViewControllerTitleButton1" = "Перейти на пост - кнопка 1";
+"feedViewControllerTitleButton2" = "Перейти на пост - кнопка 2";
+"feedViewControllerTextFieldPlaceholder" = "Введите ключевое слово...";
+"feedViewControllerCheckButtonTitle" = "Проверить";
+"feedViewControllerEmptyFieldAlertTitle" = "Ошибка!!";
+"feedViewControllerEmptyFieldAlertMessage" = "Введено пустое значение!";
+"feedViewControllerEmptyFieldAlertButtonTitle" = "Вернуться";
+
+
+"savedPostsTabBarTitle" = "Сохр.посты";
+"feedTabBarTitle" = "Лента";
+"profileTabBarTitle" = "Профиль";
+
+
+"postViewControllerTitle" = "Мой пост";
+"postViewControllerRightNavButtonTitle" = "Инфо";
+
+
+"infoViewControllerButtonTitle" = "Вызвать алерт";
+"infoViewControllerPlanetText" = "Период обращения планеты Татуин равен ";
+"infoViewControllerAlertTitle" = "Алерт";
+"infoViewControllerAlertMessage" = "Внимание Внимание!!";
+"infoViewControllerAlertAction1Title" = "Сообщение 1";
+"infoViewControllerAlertAction1ResultText" = "Вы нажали кнопку Сообщение 1";
+"infoViewControllerAlertAction2Title" = "Сообщение 2";
+"infoViewControllerAlertAction2ResultText" = "Вы нажали кнопку Сообщение 2";
+
+
+"loginViewControllerPlaceholder1" = "Эл почта или телефон";
+"loginViewControllerPlaceholder2" = "Пароль";
+"loginViewControllerButtonTitle" = "Войти";
+"loginViewControllerNoUserAlertTitle" = "Ошибка входа";
+"loginViewControllerNoUserAlertMessage" = "Необходимо зарегистрировать пользователя";
+"loginViewControllerNoUserAlertAction1Title" = "Зарегистрировать нового пользователя";
+"loginViewControllerRegisterFailureAlertTitle" = "Ошибка входа. Пользователь не зарегистрирован";
+"loginViewControllerRegisterFailureActionTitle" = "Вернуться";
+"loginViewControllerNoUserAlertAction2Title" = "Вернуться";
+"loginViewControllerFailureAlertTitle" = "Ошибка входа";
+"loginViewControllerFailureActionTitle" = "Вернуться";
+"loginViewControllerLoginSuccessUserName" = "Александр";
+"loginViewControllerLoginSuccessUserStatus" = "Привет!";
+
+
+"profileTableViewCellButtonTitile" = "Показать статус";
+"profileTableViewCellStatusLabelText" = "Ожидаем...";
+
+
+"profileViewControllerSuccessSavedAlertTitle" = "Пост успешно сохранен";
+"profileViewControllerSuccessSavedAlertMessage" = "Проверь сохраненные посты";
+"profileViewControllerFailureSavedAlertTitle" = "Ошибка сохранения поста";
+"profileViewControllerFailureSavedAlertMessage" = "Этот пост уже сохранен";
+
+
+"photosTableViewCellTitleLabel" = "Фото";
+
+"photosViewControllerTitle" = "Фото галерея";
+
+"postTableViewCellLikesText" = "Лайки: ";
+"postTableViewCellViewsText" = "Просмотры: ";
+
+"savedPostViewControllerLikesText" = "Лайки: ";
+"savedPostViewControllerViewsText" = "Просмотры: ";
+
+
+"savedPostViewControllerResetButton" = "Сбросить";
+"savedPostViewControllerSearchButton" = "Поиск";
+"savedPostViewControllerAlertTitle" = "Введите имя автора";
+"savedPostViewControllerAlertActionTitle" = "Применить";
+"savedPostViewControllerDeleteButtonTitle" = "Удалить";
+
+"author1" = "Иванов Иван";
+"author2" = "Петров Петр";
+"author3" = "Сидоров Олег";
+"author4" = "Богданов Богдан";
+
+"description1" = "Много споров вызывает также история происхождения кошек, которая тоже весьма неоднозначна. Самое распространенное мнение, которое, кстати, особенно прижилось в России, заключается в том, что единым предком современных кошек является переднеазиатская североафриканская степная кошка, которая была одомашнена вовсе не в Египте, а в Нубии, и произошло это около 4 тысяч лет назад. Только после этого кошки попали в Египет, а затем появились и в Азии, где успешно скрестились с лесными бенгальскими видами";
+"description2" = "Инопланетя́нин, пришелец (с других планет, из космоса), чужой (англ. alien, «чужой») — гипотетическое разумное существо внеземного происхождения, персонаж массовой культуры, в том числе художественных произведений, уфологии, конспирологии; (в частности, о вторжении инопланетян) и некоторых новых религиозных движений";
+"description3" = "Коктейль - \"Горящая ламбрджини\": Наливаем в коктейльную рюмку сначала кофейный ликёр, затем самбуку так, чтобы она легла верхним слоем. В одну рюмку наливаем Айриш крим, в другую — Блю Кюрасао. Поджигаем самбуку, затем вливаем в коктейльную рюмку сразу содержимое двух рюмок, пока гость пьёт.";
+"description4" = "Скелет - совокупность костей человеческого организма, пассивная часть опорно-двигательного аппарата. Служит опорой мягким тканям, точкой приложения мышц, вместилищем и защитой внутренних органов. Костная ткань скелета развивается из мезенхимы.";
+
